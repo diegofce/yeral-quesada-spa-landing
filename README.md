@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Estética Integral Yeral Quesada — Sitio Web
 
-## Getting Started
+Sitio web de marketing profesional para el spa de estética **Estética Integral Yeral Quesada**, especialistas en estética facial y corporal.
 
-First, run the development server:
+## Stack tecnológico
+
+- **Next.js 16** (App Router)
+- **React 19** + **TypeScript 5** (modo estricto)
+- **Tailwind CSS v4**
+- **Framer Motion** — animaciones
+- **Lucide React** — íconos
+- **React Hook Form + Zod** — formulario de contacto
+
+## Requisitos previos
+
+- Node.js 18+
+- npm 9+
+
+## Instalación
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd landing
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variables de entorno
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copia `.env.example` a `.env.local` y completa los valores:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.example .env.local
+```
 
-## Learn More
+| Variable | Descripción |
+|---|---|
+| `NEXT_PUBLIC_SAAS_BOOKING_URL` | URL del sistema de reservas (AgendaPro, SimplyBook, etc.) |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número WhatsApp con código de país (ej: `573001234567`) |
+| `NEXT_PUBLIC_INSTAGRAM_URL` | URL del perfil de Instagram |
+| `NEXT_PUBLIC_FACEBOOK_URL` | URL de la página de Facebook |
+| `NEXT_PUBLIC_TIKTOK_URL` | URL del perfil de TikTok |
+| `NEXT_PUBLIC_SITE_URL` | URL base del sitio en producción |
 
-To learn more about Next.js, take a look at the following resources:
+## Comandos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev      # Servidor de desarrollo en http://localhost:3000
+npm run build    # Build de producción
+npm run start    # Servidor de producción
+npm run lint     # ESLint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Cómo reemplazar imágenes y logos
 
-## Deploy on Vercel
+Todos los placeholders están marcados con comentarios `/* REEMPLAZAR: ... */` en el código.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Logo:** Busca `/* REEMPLAZAR: logo oficial */` en `Navbar.tsx` y `Footer.tsx`. Reemplaza el div placeholder por `<Image src="/logo.png" ... />`.
+2. **Hero:** En `HeroSection.tsx`, reemplaza el div de fondo por un `<Image>` con `fill` y `objectFit="cover"`.
+3. **Servicios:** En cada `ServicioCard`, reemplaza `<ImagePlaceholder>` por `<Image>`.
+4. **Productos:** En `ProductoCard.tsx`, mismo proceso que servicios.
+5. **Galería:** En `GaleriaGrid.tsx`, reemplaza los divs placeholder por `<Image>`.
+6. **Yeral Quesada:** En `SobreNosotrosPreview.tsx` y `nosotros/page.tsx`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Cómo conectar el sistema de reservas (SaaS)
+
+1. Obtén la URL de tu sistema de reservas (AgendaPro, SimplyBook, Calendly, etc.)
+2. Agrégala en `.env.local`:
+   ```
+   NEXT_PUBLIC_SAAS_BOOKING_URL=https://tu-url-de-reservas.com
+   ```
+3. Todos los botones "Reservar Cita" apuntarán automáticamente a esa URL.
+
+## Cómo conectar el formulario de contacto
+
+El formulario en `src/components/contacto/FormularioContacto.tsx` tiene un comentario `/* CONECTAR: ... */`. Opciones:
+
+- **EmailJS** (gratis, sin backend): instala `emailjs-com` y reemplaza el `console.log`.
+- **Resend** (recomendado): crea un API Route en `src/app/api/contacto/route.ts`.
+- **Formspree**: cambia el `onSubmit` para hacer un `fetch` al endpoint de Formspree.
+
+## Cómo agregar más servicios o productos
+
+- **Servicios:** Edita `src/constants/servicios.ts` — agrega objetos al array `SERVICIOS_FACIALES` o `SERVICIOS_CORPORALES`.
+- **Productos:** Edita `src/constants/productos.ts` — completa los 6 productos placeholder con datos reales.
+
+## Estructura del proyecto
+
+```
+landing/src/
+├── app/                    # Páginas (App Router)
+│   ├── page.tsx            # Home
+│   ├── servicios/          # /servicios
+│   ├── productos/          # /productos
+│   ├── nosotros/           # /nosotros
+│   ├── galeria/            # /galeria
+│   ├── contacto/           # /contacto
+│   ├── politica-de-privacidad/
+│   ├── terminos-y-condiciones/
+│   ├── sitemap.ts          # /sitemap.xml
+│   └── robots.ts           # /robots.txt
+├── components/
+│   ├── layout/             # Navbar, Footer, Breadcrumb, WhatsAppButton
+│   ├── home/               # Secciones del Home
+│   ├── servicios/          # ServicioCard, ServiciosTabs
+│   ├── productos/          # ProductoCard
+│   ├── galeria/            # GaleriaGrid, Lightbox
+│   ├── contacto/           # FormularioContacto
+│   └── ui/                 # Button, SectionTitle, ImagePlaceholder, SkeletonCard
+├── constants/              # config.ts, servicios.ts, productos.ts
+├── hooks/                  # useScrollNavbar.ts
+├── lib/                    # utils.ts (cn, formatCOP)
+└── types/                  # servicio.ts, producto.ts
+```
+
+---
+
+Desarrollado por **Diego Chacon — Soluciones Digitales Personales**
