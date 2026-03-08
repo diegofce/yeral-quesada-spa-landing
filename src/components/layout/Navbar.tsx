@@ -36,8 +36,8 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full bg-white transition-shadow duration-300",
-        isScrolled && "shadow-md"
+        "sticky top-0 z-40 w-full bg-white transition-all duration-300",
+        isScrolled && "shadow-md backdrop-blur-md bg-white/90"
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -71,12 +71,25 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA desktop */}
+        {/* CTA desktop — gradiente azul, hover dorado */}
         <a
           href={SAAS_BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center rounded bg-azul-rey px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow transition-colors hover:bg-azul-oscuro lg:flex"
+          className="group hidden items-center overflow-hidden rounded px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow transition-all duration-300 lg:flex"
+          style={{
+            background: "linear-gradient(135deg, #1A3A6B 0%, #2d5fa6 100%)",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.background =
+              "var(--gradient-accent)";
+            (e.currentTarget as HTMLAnchorElement).style.color = "#0f2557";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.background =
+              "linear-gradient(135deg, #1A3A6B 0%, #2d5fa6 100%)";
+            (e.currentTarget as HTMLAnchorElement).style.color = "white";
+          }}
         >
           Reservar Cita
         </a>

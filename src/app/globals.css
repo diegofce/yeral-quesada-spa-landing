@@ -5,9 +5,11 @@
   /* Paleta de colores */
   --color-azul-rey: #1A3A6B;
   --color-azul-oscuro: #0F2347;
+  --color-azul-medio: #2d5fa6;
   --color-dorado: #C9A96E;
   --color-dorado-claro: #D4B483;
   --color-fondo: #FAF9F7;
+  --color-blush: #FDF6F0;
   --color-carbon: #1C1C1E;
   --color-gris: #6B7280;
   --color-borde: #E5E7EB;
@@ -33,6 +35,13 @@
 :root {
   --background: #ffffff;
   --foreground: #1C1C1E;
+
+  /* Gradientes reutilizables */
+  --gradient-hero: linear-gradient(135deg, #0f2557 0%, #1a3a6b 40%, #2d5fa6 100%);
+  --gradient-accent: linear-gradient(135deg, #C9A96E 0%, #e8c99a 50%, #C9A96E 100%);
+
+  /* Sombra elegante de lujo */
+  --shadow-luxury: 0 20px 60px rgba(26, 58, 107, 0.15);
 }
 
 /* ─── Reset y base ──────────────────────────────────────────────────── */
@@ -61,3 +70,54 @@ body {
     padding-bottom: 7rem;
   }
 }
+
+/* ─── Animación de entrada suave para secciones ─────────────────────── */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Animación shimmer para líneas decorativas ─────────────────────── */
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ─── Scrollbar personalizada ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A3A6B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0F2347;
+}
+
+/* ─── Selección de texto ─────────────────────────────────────────────── */
+::selection {
+  background-color: #C9A96E;
+  color: #0F2347;
+}
+
+/* ─── Clases de utilidad para gradientes ─────────────────────────────── */
+.bg-gradient-hero    { background: var(--gradient-hero); }
+.bg-gradient-accent  { background: var(--gradient-accent); }
+.shadow-luxury       { box-shadow: var(--shadow-luxury); }
