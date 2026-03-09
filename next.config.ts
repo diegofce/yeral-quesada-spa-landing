@@ -25,12 +25,17 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+              // JSON-LD usa scripts inline; se conserva solo unsafe-inline y se elimina unsafe-eval.
+              "script-src 'self' 'unsafe-inline'",
+              "script-src-attr 'none'",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob:",
               "connect-src 'self'",
               "frame-src https://www.google.com",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'none'",
             ].join("; "),
           },
         ],

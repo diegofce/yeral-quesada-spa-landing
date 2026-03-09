@@ -17,4 +17,6 @@ export interface Producto {
   categoria: CategoriaProducto;
   /** Etiqueta visible del badge de categoría */
   badgeCategoria: string;
+  /** Indicador para destacar en listados */
+  destacado?: boolean;
 }

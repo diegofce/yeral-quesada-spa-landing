@@ -1,204 +1,162 @@
-"use client";
-
-import { motion, type Variants } from "framer-motion";
-import { Calendar } from "lucide-react";
+import Link from "next/link";
+import { Calendar, ArrowRight } from "lucide-react";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import { SAAS_BOOKING_URL, NOMBRE_NEGOCIO, SLOGAN } from "@/constants/config";
 
 /**
- * Sección Hero principal del Home — rediseño moderno y vibrante.
- * Gradiente animado con orbes de luz, layout de dos columnas en desktop,
- * badge dorado, línea shimmer y botón CTA con gradiente dorado.
+ * Hero principal con estética lujosa y femenina.
  */
-
-/** Variantes de animación para el contenedor principal */
-const contenedorVariants: Variants = {
-  oculto: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
-};
-
-/** Variantes de animación para cada elemento hijo */
-const elementoVariants: Variants = {
-  oculto: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
-};
-
-/** Variante de entrada para la imagen lateral */
-const imagenVariants: Variants = {
-  oculto: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.4 } },
-};
-
 export default function HeroSection() {
   return (
     <section
-      className="relative flex min-h-[92vh] items-center overflow-hidden"
+      className="relative overflow-hidden"
       aria-labelledby="hero-titulo"
+      style={{
+        background: "var(--gradient-hero)",
+        backgroundSize: "200% 200%",
+        animation: "gradient-shift 8s ease infinite",
+      }}
     >
-      {/* ── Fondo: gradiente hero ────────────────────────────────────────── */}
-      {/* REEMPLAZAR: imagen hero principal — cuando tengas la foto real,
-          agrega un <Image fill className="object-cover" /> aquí y
-          mantén el overlay de abajo para preservar legibilidad del texto */}
       <div
-        className="absolute inset-0"
-        style={{ background: "var(--gradient-hero)" }}
-        aria-hidden="true"
-      />
-
-      {/* ── Patrón de puntos dorados semitransparentes ────────────────────── */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
+        className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: "radial-gradient(circle, #C9A96E 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "30px 30px",
         }}
         aria-hidden="true"
       />
 
-      {/* ── Orbe de luz azul claro — arriba a la derecha ─────────────────── */}
       <div
-        className="absolute -right-20 -top-20 h-[600px] w-[600px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, #4a90d9 0%, transparent 70%)",
-          opacity: 0.15,
-          filter: "blur(80px)",
-        }}
+        className="pointer-events-none absolute -right-24 -top-24 h-[500px] w-[500px] rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(74,144,217,0.15) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
 
-      {/* ── Orbe de luz rosada/dorada — abajo a la izquierda ─────────────── */}
       <div
-        className="absolute -bottom-32 -left-20 h-[500px] w-[500px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, #C9A96E 0%, transparent 70%)",
-          opacity: 0.12,
-          filter: "blur(80px)",
-        }}
+        className="pointer-events-none absolute -bottom-16 -left-16 h-[400px] w-[400px] rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(201,169,110,0.1) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
 
-      {/* ── Contenido principal ───────────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-12 lg:gap-16">
-
-          {/* Columna de texto */}
-          <motion.div
-            className="flex-1 text-center lg:text-left"
-            variants={contenedorVariants}
-            initial="oculto"
-            animate="visible"
-          >
-            {/* Badge con gradiente dorado */}
-            <motion.p variants={elementoVariants}>
-              <span
-                className="mb-5 inline-block rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest shadow-md"
+      <div className="container-custom relative z-10 py-24 md:py-28 lg:py-32">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            <div className="space-y-6 max-w-3xl">
+              <p
+                className="inline-flex rounded-full border px-4 py-1.5 text-xs font-semibold tracking-[0.15em]"
                 style={{
-                  background: "var(--gradient-accent)",
-                  color: "#0f2557",
+                  background: "rgba(201,169,110,0.2)",
+                  borderColor: "rgba(201,169,110,0.5)",
+                  color: "var(--color-dorado-claro)",
+                  animation: "fadeInUp 0.6s ease forwards",
                 }}
               >
-                Estética Facial &amp; Corporal
-              </span>
-            </motion.p>
+                ESTÉTICA FACIAL &amp; CORPORAL
+              </p>
 
-            {/* Título principal con text-shadow dorado */}
-            <motion.h1
-              id="hero-titulo"
-              variants={elementoVariants}
-              className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
-              style={{ textShadow: "0 0 80px rgba(201, 169, 110, 0.3)" }}
-            >
-              {NOMBRE_NEGOCIO}
-            </motion.h1>
-
-            {/* Línea decorativa dorada con animación shimmer */}
-            <motion.div
-              variants={elementoVariants}
-              className="my-5 h-0.5 w-16 animate-shimmer lg:mx-0 mx-auto"
-              style={{ background: "var(--gradient-accent)" }}
-              aria-hidden="true"
-            />
-
-            {/* Subtítulo */}
-            <motion.p
-              variants={elementoVariants}
-              className="mb-4 text-xl font-light italic text-white/90 sm:text-2xl"
-            >
-              &quot;{SLOGAN}&quot;
-            </motion.p>
-
-            {/* Descripción */}
-            <motion.p
-              variants={elementoVariants}
-              className="mb-8 max-w-lg text-base leading-relaxed text-white/75 lg:mx-0 mx-auto"
-            >
-              Especialistas en tratamientos de estética facial y corporal. Combinamos
-              técnicas avanzadas con productos de alta calidad para revelar tu mejor versión.
-            </motion.p>
-
-            {/* CTA principal — gradiente dorado, texto azul oscuro */}
-            <motion.div variants={elementoVariants}>
-              <a
-                href={SAAS_BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-lg px-8 py-4 text-base font-bold uppercase tracking-wider shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-dorado focus-visible:ring-offset-2"
+              <h1
+                id="hero-titulo"
+                className="font-display text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
                 style={{
-                  background: "var(--gradient-accent)",
-                  color: "#0f2557",
-                  boxShadow: "0 8px 30px rgba(201, 169, 110, 0.4)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                    "0 12px 40px rgba(201, 169, 110, 0.65)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                    "0 8px 30px rgba(201, 169, 110, 0.4)";
+                  textShadow: "0 2px 20px rgba(0,0,0,0.3)",
+                  animation: "fadeInUp 0.6s 0.2s ease both",
                 }}
               >
-                <Calendar className="h-5 w-5" aria-hidden="true" />
-                Reservar Cita
-              </a>
-            </motion.div>
-          </motion.div>
+                {NOMBRE_NEGOCIO}
+              </h1>
 
-          {/* Columna de imagen — visible solo en desktop (lg+) */}
-          <motion.div
-            className="hidden lg:block lg:w-[380px] xl:w-[420px] flex-shrink-0"
-            variants={imagenVariants}
-            initial="oculto"
-            animate="visible"
-          >
-            {/* REEMPLAZAR: foto principal del spa o de Yeral Quesada */}
-            <div
-              className="overflow-hidden"
-              style={{
-                borderRadius: "2rem",
-                clipPath: "polygon(0 0, 100% 5%, 100% 95%, 0% 100%)",
-                border: "2px solid rgba(201, 169, 110, 0.5)",
-                boxShadow: "0 25px 60px rgba(0,0,0,0.35)",
-              }}
-            >
-              <ImagePlaceholder
-                label="REEMPLAZAR: foto principal del spa o Yeral Quesada"
-                ratio="portrait"
-                className="border-0 rounded-none bg-white/10"
+              <div
+                className="h-[3px] w-20 rounded"
+                style={{ background: "var(--gradient-dorado)", animation: "shimmer 2s ease infinite" }}
+                aria-hidden="true"
               />
-            </div>
-          </motion.div>
 
+              <p
+                className="font-display text-2xl italic text-dorado-claro"
+                style={{ animation: "fadeInUp 0.6s 0.4s ease both" }}
+              >
+                &quot;{SLOGAN}&quot;
+              </p>
+
+              <p
+                className="text-base leading-relaxed text-white/85 md:text-lg"
+                style={{ animation: "fadeInUp 0.6s 0.6s ease both" }}
+              >
+                Tratamientos profesionales para cuidar tu piel y realzar tu belleza con una experiencia exclusiva,
+                cálida y orientada a resultados reales.
+              </p>
+
+              <div
+                className="flex flex-wrap items-center gap-3"
+                style={{ animation: "fadeInUp 0.6s 0.8s ease both" }}
+              >
+                <a
+                  href={SAAS_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-dorado inline-flex items-center gap-2 text-sm"
+                >
+                  <Calendar className="h-4 w-4" aria-hidden="true" />
+                  RESERVAR CITA
+                </a>
+
+                <Link
+                  href="/servicios"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3 text-sm font-semibold tracking-[0.05em] text-white transition hover:bg-white/10"
+                >
+                  Ver Servicios
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-10 overflow-x-auto pb-1" style={{ animation: "fadeInUp 0.6s 1s ease both" }}>
+              <div className="inline-flex min-w-max items-center gap-5 text-white">
+                <div>
+                  <p className="font-display text-3xl text-dorado-brillante">500+</p>
+                  <p className="text-xs uppercase tracking-[0.12em] text-white/85">Clientes</p>
+                </div>
+                <span className="h-10 w-px bg-dorado/45" aria-hidden="true" />
+                <div>
+                  <p className="font-display text-3xl text-dorado-brillante">5.0</p>
+                  <p className="text-xs uppercase tracking-[0.12em] text-white/85">Calificación</p>
+                </div>
+                <span className="h-10 w-px bg-dorado/45" aria-hidden="true" />
+                <div>
+                  <p className="font-display text-3xl text-dorado-brillante">8+</p>
+                  <p className="text-xs uppercase tracking-[0.12em] text-white/85">Años</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative hidden lg:flex lg:col-span-2 lg:justify-end">
+            <div
+              className="relative w-full max-w-[320px]"
+              style={{ animation: "float 6s ease infinite" }}
+            >
+              <div
+                className="absolute -right-5 -top-5 h-20 w-20 rounded-full"
+                style={{ background: "var(--gradient-dorado)", animation: "pulse-glow 3s ease infinite" }}
+                aria-hidden="true"
+              />
+
+              {/* REEMPLAZAR: foto principal del spa o de Yeral Quesada */}
+              <ImagePlaceholder
+                label="Foto principal pendiente por configurar"
+                ratio="portrait"
+                className="rounded-[2rem_2rem_2rem_0.5rem] border-2 border-dorado/40 shadow-[var(--shadow-dorado)]"
+              />
+
+              <div className="absolute -bottom-4 left-4 rounded-xl border border-dorado/40 bg-white px-4 py-2 shadow-[var(--shadow-luxury)]">
+                <p className="text-xs font-semibold tracking-[0.12em] text-azul-rey">
+                  Resultados Garantizados
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Degradado inferior para transición suave con la siguiente sección */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"
-        aria-hidden="true"
-      />
     </section>
   );
 }

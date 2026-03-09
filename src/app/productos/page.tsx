@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/layout/Breadcrumb";
-import SectionTitle from "@/components/ui/SectionTitle";
 import ProductoCard from "@/components/productos/ProductoCard";
-import { NOMBRE_NEGOCIO, SITE_URL, WHATSAPP_URL } from "@/constants/config";
+import { NOMBRE_NEGOCIO, SITE_URL } from "@/constants/config";
 import { PRODUCTOS } from "@/constants/productos";
 
 export const metadata: Metadata = {
@@ -65,12 +64,23 @@ export default function PaginaProductos() {
             </p>
           </div>
 
-          {/* Grid 2 → 3 → 4 columnas */}
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 xl:grid-cols-4">
-            {PRODUCTOS.map((producto) => (
-              <ProductoCard key={producto.id} producto={producto} />
-            ))}
-          </div>
+          {PRODUCTOS.length > 0 ? (
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 xl:grid-cols-4">
+              {PRODUCTOS.map((producto) => (
+                <ProductoCard key={producto.id} producto={producto} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-borde bg-white p-10 text-center shadow-sm">
+              <h2 className="font-display text-2xl font-semibold text-carbon">
+                Catálogo en actualización
+              </h2>
+              <p className="mt-3 text-sm text-gris">
+                Estamos cargando los productos y precios reales. Mientras tanto,
+                contáctanos por WhatsApp para asesoría personalizada.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>

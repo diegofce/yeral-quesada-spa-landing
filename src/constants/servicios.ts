@@ -9,28 +9,31 @@ export const SERVICIOS_FACIALES: Servicio[] = [
     id: "limpieza-facial-profunda",
     nombre: "Limpieza Facial Profunda",
     descripcion:
-      "Elimina impurezas profundas, células muertas y puntos negros para una piel limpia, radiante y purificada.",
+      "Tratamiento completo que elimina impurezas, puntos negros y células muertas para revelar una piel limpia, fresca y luminosa.",
     duracionMinutos: 60,
     precioDesde: 80000,
     categoria: "facial",
+    icono: "Sparkles",
   },
   {
     id: "porcelanizado-facial",
     nombre: "Porcelanizado Facial",
     descripcion:
-      "Tratamiento hidratante intensivo que ilumina, suaviza y unifica el tono de la piel al instante.",
+      "Técnica de hidratación profunda que suaviza, ilumina y unifica el tono de la piel, dejándola con acabado tipo porcelana.",
     duracionMinutos: 75,
     precioDesde: 120000,
     categoria: "facial",
+    icono: "Star",
   },
   {
     id: "tratamiento-postoperatorio-facial",
     nombre: "Tratamiento Postoperatorio Facial",
     descripcion:
-      "Cuidado especializado para una recuperación segura y efectiva tras procedimientos estéticos faciales.",
+      "Cuidado especializado post-cirugía para acelerar la recuperación, reducir inflamación y garantizar resultados óptimos.",
     duracionMinutos: 90,
     precioDesde: 150000,
     categoria: "facial",
+    icono: "Shield",
   },
   /* AGREGAR MÁS SERVICIOS FACIALES AQUÍ */
 ];
@@ -40,22 +43,26 @@ export const SERVICIOS_CORPORALES: Servicio[] = [
     id: "tratamiento-reductor",
     nombre: "Tratamiento Reductor",
     descripcion:
-      "Técnicas corporales avanzadas para moldear, tonificar y reducir medidas de forma segura y eficiente.",
+      "Técnicas corporales avanzadas para reducir medidas, eliminar grasa localizada y moldear la silueta de forma efectiva.",
     duracionMinutos: 60,
     precioDesde: 100000,
     categoria: "corporal",
+    icono: "Heart",
   },
   {
     id: "tratamiento-postoperatorio-corporal",
     nombre: "Tratamiento Postoperatorio Corporal",
     descripcion:
-      "Protocolo especializado de recuperación post-quirúrgica corporal para resultados óptimos y seguros.",
+      "Protocolo especializado para recuperación post-cirugía corporal, con drenaje linfático y técnicas de cicatrización.",
     duracionMinutos: 90,
     precioDesde: 150000,
     categoria: "corporal",
+    icono: "Shield",
   },
   /* AGREGAR MÁS SERVICIOS CORPORALES AQUÍ */
 ];
+
+/* AGREGAR MÁS SERVICIOS AQUÍ - mantener estructura del tipo Servicio */
 
 /** Todos los servicios combinados */
 export const TODOS_LOS_SERVICIOS: Servicio[] = [
@@ -67,6 +74,6 @@ export const TODOS_LOS_SERVICIOS: Servicio[] = [
 export const SERVICIOS_DESTACADOS: Servicio[] = [
   SERVICIOS_FACIALES[0],
   SERVICIOS_FACIALES[1],
-  SERVICIOS_CORPORALES[0],
   SERVICIOS_FACIALES[2],
+  SERVICIOS_CORPORALES[0],
 ];

@@ -2,23 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
-import { WHATSAPP_URL, NOMBRE_NEGOCIO } from "@/constants/config";
+import { WHATSAPP_NUMBER } from "@/constants/config";
 
 /**
- * Botón flotante de WhatsApp.
- * Aparece en todas las páginas (montado en layout.tsx).
- * Se oculta cuando la altura del viewport es muy pequeña (teclado virtual en mobile).
+ * Botón flotante de WhatsApp con control de teclado virtual.
  */
-
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Detectar teclado virtual en mobile: el viewport se reduce significativamente
     const handleResize = () => {
       const alturaVisual = window.visualViewport?.height ?? window.innerHeight;
       const alturaTotal = window.screen.height;
-      // Si el viewport visual es menos del 75% de la pantalla → teclado abierto
       setVisible(alturaVisual / alturaTotal > 0.75);
     };
 
@@ -35,27 +30,18 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href={`${WHATSAPP_URL}?text=Hola! Me interesa conocer más sobre los servicios de ${encodeURIComponent(NOMBRE_NEGOCIO)}`}
+      href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-transform duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+      className="group fixed bottom-6 right-6 z-50 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)]"
+      style={{ animation: "pulse-glow-green 2.4s ease infinite" }}
     >
-      {/* Animación pulse de fondo */}
-      <span
-        className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-30"
-        aria-hidden="true"
-      />
+      <MessageCircle className="h-7 w-7" aria-hidden="true" />
 
-      {/* Ícono WhatsApp */}
-      <MessageCircle className="relative h-7 w-7 text-white" aria-hidden="true" />
-
-      {/* Tooltip */}
-      <span
-        className="absolute right-16 whitespace-nowrap rounded-md bg-carbon px-3 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 pointer-events-none"
-        role="tooltip"
-      >
+      <span className="pointer-events-none absolute right-[72px] whitespace-nowrap rounded-lg bg-azul-rey px-3 py-2 text-xs text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100" role="tooltip">
         ¡Escríbenos!
+        <span className="absolute right-[-5px] top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 bg-azul-rey" aria-hidden="true" />
       </span>
     </a>
   );

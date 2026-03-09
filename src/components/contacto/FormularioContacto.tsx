@@ -7,6 +7,7 @@ import { Send, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { TODOS_LOS_SERVICIOS } from "@/constants/servicios";
+import { CONTACT_FORM_ENDPOINT } from "@/constants/config";
 
 /**
  * Formulario de contacto con validación Zod y React Hook Form.
@@ -77,6 +78,7 @@ const claseInput =
 
 export default function FormularioContacto() {
   const [enviado, setEnviado] = useState(false);
+  const [mensajeError, setMensajeError] = useState<string | null>(null);
 
   const {
     register,
@@ -88,21 +90,35 @@ export default function FormularioContacto() {
   });
 
   const onSubmit = async (datos: DatosFormulario) => {
-    try {
-      /* CONECTAR: endpoint de envío de formulario o servicio de email */
-      /* Opciones: EmailJS, Resend, Formspree, API Route propia */
-      console.log("Datos del formulario:", datos);
+    setMensajeError(null);
 
-      // Simular envío
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      if (!CONTACT_FORM_ENDPOINT) {
+        throw new Error(
+          "Formulario no configurado. Define NEXT_PUBLIC_CONTACT_FORM_ENDPOINT en .env.local."
+        );
+      }
+
+      const respuesta = await fetch(CONTACT_FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("No fue posible enviar el formulario en este momento.");
+      }
 
       setEnviado(true);
       reset();
-
-      // Resetear mensaje de éxito después de 5 segundos
-      setTimeout(() => setEnviado(false), 5000);
     } catch (error) {
-      console.error("Error al enviar el formulario:", error);
+      const mensaje =
+        error instanceof Error
+          ? error.message
+          : "Ocurrió un error al enviar el formulario.";
+      setMensajeError(mensaje);
     }
   };
 
@@ -211,6 +227,12 @@ export default function FormularioContacto() {
           </>
         )}
       </button>
+
+      {mensajeError && (
+        <p role="alert" className="text-xs text-red-500">
+          {mensajeError}
+        </p>
+      )}
 
       <p className="text-xs text-gris">
         <span className="text-red-500">*</span> Campos obligatorios.

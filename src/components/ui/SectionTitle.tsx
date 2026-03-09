@@ -1,88 +1,101 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Título de sección estilizado con decoración dorada.
- * Muestra un subtítulo opcional, título principal (Playfair Display) y una línea decorativa.
+ * Encabezado reutilizable para secciones.
  */
-
 interface SectionTitleProps {
-  /** Subtítulo pequeño sobre el título principal */
-  subtitulo?: string;
-  /** Título principal de la sección */
-  titulo: string;
-  /** Descripción opcional debajo del título */
-  descripcion?: string;
-  /** Alineación del título */
-  alineacion?: "izquierda" | "centro" | "derecha";
-  /** Clases adicionales */
-  className?: string;
-  /** Tema de color: claro (sobre fondo blanco) u oscuro (sobre fondo azul) */
-  tema?: "claro" | "oscuro";
-  /** ID para aria-labelledby en la sección padre */
+  title?: string;
+  subtitle?: string;
+  align?: "left" | "center" | "right";
+  variant?: "claro" | "oscuro";
+  badge?: string;
   id?: string;
+  className?: string;
+  description?: string;
+
+  /* Compatibilidad con props anteriores */
+  titulo?: string;
+  subtitulo?: string;
+  alineacion?: "izquierda" | "centro" | "derecha";
+  tema?: "claro" | "oscuro";
+  descripcion?: string;
 }
 
 export default function SectionTitle({
-  subtitulo,
-  titulo,
-  descripcion,
-  alineacion = "centro",
-  className,
-  tema = "claro",
+  title,
+  subtitle,
+  align,
+  variant = "claro",
+  badge,
   id,
+  className,
+  description,
+  titulo,
+  subtitulo,
+  alineacion,
+  tema,
+  descripcion,
 }: SectionTitleProps) {
+  const finalTitle = title ?? titulo ?? "";
+  const finalSubtitle = subtitle ?? subtitulo;
+  const finalDescription = description ?? descripcion;
+
+  const finalAlign =
+    align ??
+    (alineacion === "izquierda"
+      ? "left"
+      : alineacion === "derecha"
+        ? "right"
+        : alineacion === "centro"
+          ? "center"
+          : "center");
+
+  const finalVariant = variant ?? tema ?? "claro";
+
   return (
     <div
       className={cn(
         "mb-12",
-        alineacion === "centro" && "text-center",
-        alineacion === "izquierda" && "text-left",
-        alineacion === "derecha" && "text-right",
+        finalAlign === "left" && "text-left",
+        finalAlign === "center" && "text-center",
+        finalAlign === "right" && "text-right",
         className
       )}
     >
-      {/* Subtítulo decorativo */}
-      {subtitulo && (
-        <p
-          className={cn(
-            "mb-2 text-sm font-semibold uppercase tracking-widest",
-            tema === "claro" ? "text-dorado" : "text-dorado"
-          )}
-        >
-          {subtitulo}
+      {(badge || finalSubtitle) && (
+        <p className="mb-3 inline-flex rounded-full border border-dorado/40 bg-dorado/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-dorado">
+          {badge ?? finalSubtitle}
         </p>
       )}
 
-      {/* Título principal */}
       <h2
         id={id}
         className={cn(
           "font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl",
-          tema === "claro" ? "text-carbon" : "text-white"
+          finalVariant === "oscuro" ? "text-white" : "text-azul-rey"
         )}
       >
-        {titulo}
+        {finalTitle}
       </h2>
 
-      {/* Línea decorativa dorada */}
       <div
         className={cn(
-          "mt-4 h-0.5 w-16 bg-dorado",
-          alineacion === "centro" && "mx-auto",
-          alineacion === "derecha" && "ml-auto"
+          "decorative-line",
+          finalAlign === "left" && "mx-0",
+          finalAlign === "right" && "ml-auto mr-0"
         )}
       />
 
-      {/* Descripción opcional */}
-      {descripcion && (
+      {finalDescription && (
         <p
           className={cn(
-            "mt-4 max-w-2xl text-base leading-relaxed md:text-lg",
-            alineacion === "centro" && "mx-auto",
-            tema === "claro" ? "text-gris" : "text-white/80"
+            "max-w-3xl text-base leading-relaxed md:text-lg",
+            finalAlign === "center" && "mx-auto",
+            finalAlign === "right" && "ml-auto",
+            finalVariant === "oscuro" ? "text-white/80" : "text-texto-suave"
           )}
         >
-          {descripcion}
+          {finalDescription}
         </p>
       )}
     </div>

@@ -39,6 +39,7 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_FACEBOOK_URL` | URL de la página de Facebook |
 | `NEXT_PUBLIC_TIKTOK_URL` | URL del perfil de TikTok |
 | `NEXT_PUBLIC_SITE_URL` | URL base del sitio en producción |
+| `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` | Endpoint HTTP para envío del formulario de contacto |
 
 ## Comandos
 
@@ -71,11 +72,13 @@ Todos los placeholders están marcados con comentarios `/* REEMPLAZAR: ... */` e
 
 ## Cómo conectar el formulario de contacto
 
-El formulario en `src/components/contacto/FormularioContacto.tsx` tiene un comentario `/* CONECTAR: ... */`. Opciones:
+Configura en `.env.local`:
 
-- **EmailJS** (gratis, sin backend): instala `emailjs-com` y reemplaza el `console.log`.
-- **Resend** (recomendado): crea un API Route en `src/app/api/contacto/route.ts`.
-- **Formspree**: cambia el `onSubmit` para hacer un `fetch` al endpoint de Formspree.
+```bash
+NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=https://tu-endpoint.com/contacto
+```
+
+El formulario envía un `POST` JSON con: `nombre`, `telefono`, `email`, `servicioInteres`, `mensaje`.
 
 ## Cómo agregar más servicios o productos
 

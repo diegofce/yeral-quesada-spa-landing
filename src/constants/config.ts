@@ -33,6 +33,10 @@ export const TIKTOK_URL =
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://esteticaintegralyeral.com";
 
+/** Endpoint HTTP para formulario de contacto (SaaS o backend externo) */
+export const CONTACT_FORM_ENDPOINT =
+  process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || "";
+
 /** Nombre del negocio */
 export const NOMBRE_NEGOCIO = "Estética Integral Yeral Quesada";
 

@@ -17,6 +17,8 @@ export interface Servicio {
   precioDesde: number;
   /** Categoría: facial o corporal */
   categoria: CategoriaServicio;
+  /** Ícono de referencia para UI */
+  icono?: "Sparkles" | "Star" | "Shield" | "Heart";
   /** Texto del botón (opcional, default: "RESERVAR ESTE SERVICIO") */
   ctaTexto?: string;
 }

@@ -3,20 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScrollNavbar } from "@/hooks/useScrollNavbar";
 import { SAAS_BOOKING_URL, NOMBRE_CORTO } from "@/constants/config";
 
 /**
- * Barra de navegación principal.
- * - Sticky con sombra al hacer scroll
- * - Menú hamburger animado en mobile
- * - Estado activo en el enlace de la página actual
- * - Botón CTA siempre visible
+ * Navegación principal con transición transparente/blanco según scroll.
  */
-
 const ENLACES_NAV = [
   { href: "/", etiqueta: "Inicio" },
   { href: "/servicios", etiqueta: "Servicios" },
@@ -28,133 +21,124 @@ const ENLACES_NAV = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isScrolled = useScrollNavbar(20);
+  const isScrolled = useScrollNavbar(50);
   const [menuAbierto, setMenuAbierto] = useState(false);
 
-  const cerrarMenu = () => setMenuAbierto(false);
+  const colorTexto = isScrolled ? "text-azul-rey" : "text-white";
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full bg-white transition-all duration-300",
-        isScrolled && "shadow-md backdrop-blur-md bg-white/90"
+        "sticky top-0 z-40 w-full transition-all duration-300 backdrop-blur-xl",
+        isScrolled
+          ? "bg-white/95 shadow-[0_2px_20px_rgba(26,58,107,0.1)]"
+          : "bg-[rgba(0,0,0,0.25)]"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" onClick={cerrarMenu}>
-          {/* REEMPLAZAR: logo oficial */}
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-azul-rey text-white text-xs font-bold font-display">
+      <div className="container-custom flex h-20 items-center justify-between">
+        <Link href="/" className="flex items-center gap-2" onClick={() => setMenuAbierto(false)}>
+          {/* REEMPLAZAR: logo real */}
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-azul-rey font-display text-xs font-bold text-white">
             EI
-          </div>
-          <span className="hidden font-display text-lg font-bold text-azul-rey sm:block">
-            {NOMBRE_CORTO}
           </span>
+          <span className={cn("font-display text-lg font-semibold", colorTexto)}>{NOMBRE_CORTO}</span>
         </Link>
 
-        {/* Navegación desktop */}
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegación principal">
-          {ENLACES_NAV.map((enlace) => (
-            <Link
-              key={enlace.href}
-              href={enlace.href}
-              className={cn(
-                "text-sm font-medium transition-colors duration-150 hover:text-azul-rey",
-                pathname === enlace.href
-                  ? "text-azul-rey border-b-2 border-dorado pb-0.5"
-                  : "text-carbon"
-              )}
-            >
-              {enlace.etiqueta}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegación principal">
+          {ENLACES_NAV.map((enlace) => {
+            const activo = pathname === enlace.href;
+            return (
+              <Link
+                key={enlace.href}
+                href={enlace.href}
+                className={cn(
+                  "relative pb-1 text-sm font-medium transition",
+                  isScrolled ? "text-azul-rey hover:text-dorado" : "text-white hover:text-dorado-claro",
+                  activo && "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-dorado"
+                )}
+              >
+                {enlace.etiqueta}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* CTA desktop — gradiente azul, hover dorado */}
         <a
           href={SAAS_BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group hidden items-center overflow-hidden rounded px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow transition-all duration-300 lg:flex"
-          style={{
-            background: "linear-gradient(135deg, #1A3A6B 0%, #2d5fa6 100%)",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background =
-              "var(--gradient-accent)";
-            (e.currentTarget as HTMLAnchorElement).style.color = "#0f2557";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background =
-              "linear-gradient(135deg, #1A3A6B 0%, #2d5fa6 100%)";
-            (e.currentTarget as HTMLAnchorElement).style.color = "white";
-          }}
+          className={cn(
+            "hidden text-xs lg:inline-flex",
+            isScrolled ? "btn-azul" : "btn-dorado"
+          )}
         >
-          Reservar Cita
+          RESERVAR CITA
         </a>
 
-        {/* Botón hamburger mobile */}
         <button
-          className="flex h-10 w-10 items-center justify-center rounded text-carbon transition-colors hover:bg-gray-100 lg:hidden"
-          onClick={() => setMenuAbierto(!menuAbierto)}
+          className={cn(
+            "relative flex h-11 w-11 items-center justify-center rounded-full lg:hidden",
+            isScrolled ? "bg-azul-rey/8" : "bg-white/10"
+          )}
           aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={menuAbierto}
           aria-controls="menu-mobile"
+          onClick={() => setMenuAbierto((prev) => !prev)}
         >
-          {menuAbierto ? (
-            <X className="h-6 w-6" aria-hidden="true" />
-          ) : (
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          )}
+          <span
+            className={cn(
+              "absolute h-0.5 w-5 transition-all",
+              isScrolled ? "bg-azul-rey" : "bg-white",
+              menuAbierto ? "rotate-45" : "-translate-y-1.5"
+            )}
+          />
+          <span
+            className={cn(
+              "absolute h-0.5 w-5 transition-all",
+              isScrolled ? "bg-azul-rey" : "bg-white",
+              menuAbierto ? "opacity-0" : "opacity-100"
+            )}
+          />
+          <span
+            className={cn(
+              "absolute h-0.5 w-5 transition-all",
+              isScrolled ? "bg-azul-rey" : "bg-white",
+              menuAbierto ? "-rotate-45" : "translate-y-1.5"
+            )}
+          />
         </button>
       </div>
 
-      {/* Menú mobile */}
-      <AnimatePresence>
-        {menuAbierto && (
-          <motion.div
-            id="menu-mobile"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-borde bg-white lg:hidden"
-          >
-            <nav
-              className="flex flex-col px-4 py-4 gap-1"
-              aria-label="Menú mobile"
-            >
-              {ENLACES_NAV.map((enlace) => (
-                <Link
-                  key={enlace.href}
-                  href={enlace.href}
-                  onClick={cerrarMenu}
-                  className={cn(
-                    "rounded px-3 py-2.5 text-base font-medium transition-colors",
-                    pathname === enlace.href
-                      ? "bg-azul-rey/5 text-azul-rey"
-                      : "text-carbon hover:bg-gray-50"
-                  )}
-                >
-                  {enlace.etiqueta}
-                </Link>
-              ))}
-
-              {/* CTA mobile */}
-              <a
-                href={SAAS_BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={cerrarMenu}
-                className="mt-3 rounded bg-azul-rey px-4 py-3 text-center text-sm font-semibold uppercase tracking-wide text-white shadow hover:bg-azul-oscuro"
+      {menuAbierto && (
+        <div id="menu-mobile" className="border-t border-dorado/20 bg-white shadow-[var(--shadow-luxury)] lg:hidden">
+          <nav className="container-custom flex flex-col gap-2 py-4" aria-label="Menú móvil">
+            {ENLACES_NAV.map((enlace) => (
+              <Link
+                key={enlace.href}
+                href={enlace.href}
+                onClick={() => setMenuAbierto(false)}
+                className={cn(
+                  "rounded-xl border px-4 py-3 text-base font-medium transition",
+                  pathname === enlace.href
+                    ? "border-dorado/60 bg-dorado/10 text-azul-rey"
+                    : "border-transparent text-azul-rey hover:border-dorado/50 hover:bg-dorado/5"
+                )}
               >
-                Reservar Cita
-              </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {enlace.etiqueta}
+              </Link>
+            ))}
+            <a
+              href={SAAS_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuAbierto(false)}
+              className="btn-dorado mt-2 w-full text-center text-xs"
+            >
+              RESERVAR CITA
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

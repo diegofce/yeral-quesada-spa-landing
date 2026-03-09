@@ -1,69 +1,51 @@
 import Link from "next/link";
 import { ArrowRight, ZoomIn } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 
 /**
- * Preview de la galería en el Home.
- * Grid masonry de 6 imágenes placeholder con efecto hover.
+ * Vista previa de galería con estilo masonry.
  */
-
-/** Alturas variadas para simular masonry */
 const FOTOS_PREVIEW = [
-  { id: 1, ratio: "aspect-square", alt: "Tratamiento facial en el spa" },
-  { id: 2, ratio: "aspect-[3/4]", alt: "Resultado de limpieza facial" },
-  { id: 3, ratio: "aspect-video", alt: "Instalaciones del spa" },
-  { id: 4, ratio: "aspect-[3/4]", alt: "Tratamiento corporal" },
-  { id: 5, ratio: "aspect-square", alt: "Porcelanizado facial" },
-  { id: 6, ratio: "aspect-video", alt: "Resultado de tratamiento" },
+  { id: 1, altura: "h-[200px]" },
+  { id: 2, altura: "h-[280px]" },
+  { id: 3, altura: "h-[240px]" },
+  { id: 4, altura: "h-[280px]" },
+  { id: 5, altura: "h-[220px]" },
+  { id: 6, altura: "h-[260px]" },
 ] as const;
 
 export default function GaleriaPreview() {
   return (
-    <section className="section-padding bg-white" aria-labelledby="galeria-titulo">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="section-padding" style={{ background: "var(--color-blush)" }} aria-labelledby="galeria-titulo">
+      <div className="container-custom">
         <SectionTitle
-          subtitulo="Nuestro trabajo"
-          titulo="Galería de Resultados"
-          descripcion="Conoce los resultados reales de nuestros tratamientos y las instalaciones donde te atendemos."
           id="galeria-titulo"
+          title="Galería de Resultados"
+          subtitle="Nuestro trabajo"
+          description="Muestra visual de resultados y espacios. Luego podrás reemplazar cada imagen manualmente."
         />
 
-        {/* Grid con columnas estilo masonry */}
         {/* REEMPLAZAR: agregar imágenes reales de la galería */}
-        <div className="columns-2 gap-4 md:columns-3">
+        <div className="columns-2 gap-4 lg:columns-3">
           {FOTOS_PREVIEW.map((foto) => (
-            <div
-              key={foto.id}
-              className="group relative mb-4 overflow-hidden rounded-xl break-inside-avoid"
-            >
-              {/* Placeholder de imagen */}
-              <div
-                className={`${foto.ratio} w-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center`}
-                role="img"
-                aria-label={foto.alt}
-              >
-                <span className="text-xs text-slate-400 text-center px-2">
-                  {/* REEMPLAZAR: foto real del spa/resultado */}
-                  Foto {foto.id}
-                </span>
-              </div>
+            <article key={foto.id} className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl">
+              <ImagePlaceholder
+                label={`Foto ${foto.id}`}
+                className={`${foto.altura} w-full rounded-2xl`}
+              />
 
-              {/* Overlay hover */}
-              <div
-                className="absolute inset-0 flex items-center justify-center bg-azul-rey/0 transition-all duration-300 group-hover:bg-azul-rey/50"
-                aria-hidden="true"
-              >
-                <ZoomIn className="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 flex items-center justify-center bg-transparent transition duration-300 group-hover:bg-[linear-gradient(135deg,rgba(26,58,107,0.55),rgba(201,169,110,0.45))]">
+                <ZoomIn className="h-8 w-8 text-dorado-brillante opacity-0 transition duration-300 group-hover:opacity-100" aria-hidden="true" />
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* CTA galería completa */}
         <div className="mt-10 text-center">
           <Link
             href="/galeria"
-            className="inline-flex items-center gap-2 text-base font-semibold text-azul-rey transition-colors hover:text-azul-oscuro"
+            className="inline-flex items-center gap-2 text-base font-semibold text-azul-rey transition-colors hover:text-azul-medio"
           >
             Ver Galería Completa
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

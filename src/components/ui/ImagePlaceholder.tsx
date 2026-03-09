@@ -2,28 +2,23 @@ import { cn } from "@/lib/utils";
 import { ImageIcon } from "lucide-react";
 
 /**
- * Placeholder visual para imágenes que aún no han sido cargadas.
- * Incluye un comentario guía para el desarrollador.
+ * Placeholder elegante para imágenes que se cargarán manualmente.
  */
-
 interface ImagePlaceholderProps {
-  /** Texto descriptivo del placeholder */
   label?: string;
-  /** Clases adicionales para el contenedor */
   className?: string;
-  /** Ratio de aspecto */
   ratio?: "cuadrado" | "landscape" | "portrait" | "panorama";
 }
 
 export default function ImagePlaceholder({
-  label = "REEMPLAZAR: imagen real",
+  label = "Imagen pendiente por configurar",
   className,
   ratio = "landscape",
 }: ImagePlaceholderProps) {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-2 rounded-lg bg-gray-100 border-2 border-dashed border-gray-300",
+        "flex flex-col items-center justify-center gap-2 border border-dashed border-dorado/40 bg-[linear-gradient(135deg,#F0F4FF,#FDF0F5)]",
         ratio === "cuadrado" && "aspect-square",
         ratio === "landscape" && "aspect-video",
         ratio === "portrait" && "aspect-[3/4]",
@@ -33,8 +28,8 @@ export default function ImagePlaceholder({
       role="img"
       aria-label={label}
     >
-      <ImageIcon className="h-8 w-8 text-gray-400" aria-hidden="true" />
-      <span className="max-w-[80%] text-center text-xs text-gray-400 leading-tight">
+      <ImageIcon className="h-9 w-9 text-azul-rey/45" aria-hidden="true" />
+      <span className="max-w-[80%] text-center font-sans text-xs italic leading-tight text-azul-rey/40">
         {/* REEMPLAZAR: imagen real */}
         {label}
       </span>

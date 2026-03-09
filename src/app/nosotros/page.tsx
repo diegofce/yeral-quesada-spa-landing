@@ -123,7 +123,7 @@ export default function PaginaNosotros() {
               {/* REEMPLAZAR: logo oficial */}
               <div className="mt-6 flex justify-center">
                 <div className="rounded-xl border border-borde bg-fondo p-4 text-center">
-                  <p className="text-xs text-gris">REEMPLAZAR: logo oficial</p>
+                  <p className="text-xs text-gris">Logo pendiente por configurar</p>
                 </div>
               </div>
             </div>

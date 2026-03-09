@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SITE_URL } from "@/constants/config";
 
 /**
  * Componente de navegación breadcrumb con Schema.org JSON-LD incluido.
@@ -22,6 +23,11 @@ interface BreadcrumbProps {
 }
 
 export default function Breadcrumb({ items, className }: BreadcrumbProps) {
+  const toAbsoluteUrl = (href: string): string => {
+    if (href.startsWith("http://") || href.startsWith("https://")) return href;
+    return `${SITE_URL}${href.startsWith("/") ? href : `/${href}`}`;
+  };
+
   // Schema.org BreadcrumbList para SEO
   const schemaData = {
     "@context": "https://schema.org",
@@ -31,13 +37,13 @@ export default function Breadcrumb({ items, className }: BreadcrumbProps) {
         "@type": "ListItem",
         position: 1,
         name: "Inicio",
-        item: "/",
+        item: SITE_URL,
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
         position: index + 2,
         name: item.etiqueta,
-        ...(item.href && { item: item.href }),
+        ...(item.href && { item: toAbsoluteUrl(item.href) }),
       })),
     ],
   };

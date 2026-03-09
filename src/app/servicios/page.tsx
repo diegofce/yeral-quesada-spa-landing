@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/layout/Breadcrumb";
-import SectionTitle from "@/components/ui/SectionTitle";
 import ServiciosTabs from "@/components/servicios/ServiciosTabs";
 import { SAAS_BOOKING_URL, NOMBRE_NEGOCIO, SITE_URL } from "@/constants/config";
 

@@ -14,13 +14,8 @@ import {
 } from "@/constants/config";
 
 /**
- * Pie de página con 4 columnas:
- * 1. Marca y slogan
- * 2. Mapa del sitio
- * 3. Legal y horarios
- * 4. Redes sociales y contacto
+ * Pie de página principal del sitio.
  */
-
 const ENLACES_MAPA_SITIO = [
   { href: "/", etiqueta: "Inicio" },
   { href: "/servicios", etiqueta: "Servicios" },
@@ -42,47 +37,45 @@ const REDES_SOCIALES = [
     ),
     etiqueta: "TikTok",
   },
-  {
-    href: `${WHATSAPP_URL}?text=Hola! Me interesa conocer más sobre sus servicios`,
-    icono: MessageCircle,
-    etiqueta: "WhatsApp",
-  },
+  { href: WHATSAPP_URL, icono: MessageCircle, etiqueta: "WhatsApp" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-azul-oscuro text-white" role="contentinfo">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Columnas principales */}
-        <div className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative overflow-hidden bg-azul-rey text-white" role="contentinfo">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }}
+        aria-hidden="true"
+      />
 
-          {/* Columna 1: Marca */}
-          <div className="flex flex-col gap-4">
+      <div className="h-1 w-full" style={{ background: "var(--gradient-dorado)" }} aria-hidden="true" />
+
+      <div className="container-custom relative z-10 py-14">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
             {/* REEMPLAZAR: logo oficial */}
-            <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-dorado text-white text-xs font-bold font-display">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xs font-bold text-azul-rey">
                 EI
-              </div>
-              <span className="font-display text-lg font-bold">{NOMBRE_NEGOCIO}</span>
+              </span>
+              <p className="font-display text-lg">{NOMBRE_NEGOCIO}</p>
             </div>
-            <p className="text-sm leading-relaxed text-white/70 italic">"{SLOGAN}"</p>
-            <p className="text-sm text-white/60">
-              Especialistas en estética facial y corporal. Tu belleza en manos expertas.
+            <p className="mt-4 text-sm italic text-white/80">&quot;{SLOGAN}&quot;</p>
+            <p className="mt-3 text-sm text-white/75">
+              Centro de estética facial y corporal enfocado en bienestar, belleza y resultados.
             </p>
           </div>
 
-          {/* Columna 2: Mapa del sitio */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-dorado">
-              Mapa del Sitio
-            </h3>
-            <ul className="flex flex-col gap-2">
+            <h3 className="font-display text-xl text-dorado-claro">Mapa del Sitio</h3>
+            <ul className="mt-4 space-y-2">
               {ENLACES_MAPA_SITIO.map((enlace) => (
                 <li key={enlace.href}>
-                  <Link
-                    href={enlace.href}
-                    className="text-sm text-white/70 transition-colors hover:text-dorado"
-                  >
+                  <Link href={enlace.href} className="text-sm text-white/70 transition hover:text-dorado-claro">
                     {enlace.etiqueta}
                   </Link>
                 </li>
@@ -90,49 +83,36 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Columna 3: Legal y horarios */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-dorado">
-              Información
-            </h3>
-            <ul className="mb-6 flex flex-col gap-2">
+            <h3 className="font-display text-xl text-dorado-claro">Legal</h3>
+            <ul className="mt-4 space-y-2">
               <li>
-                <Link
-                  href="/politica-de-privacidad"
-                  className="text-sm text-white/70 transition-colors hover:text-dorado"
-                >
+                <Link href="/politica-de-privacidad" className="text-sm text-white/70 transition hover:text-dorado-claro">
                   Política de Privacidad
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/terminos-y-condiciones"
-                  className="text-sm text-white/70 transition-colors hover:text-dorado"
-                >
+                <Link href="/terminos-y-condiciones" className="text-sm text-white/70 transition hover:text-dorado-claro">
                   Términos y Condiciones
                 </Link>
               </li>
             </ul>
-            <div>
-              <h4 className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/50">
-                Horarios
-              </h4>
-              <ul className="flex flex-col gap-1">
+
+            <div className="mt-5 rounded-xl border border-dorado/20 bg-white/5 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-dorado-claro">Horarios</p>
+              <ul className="mt-2 space-y-1">
                 {HORARIOS.map((h) => (
-                  <li key={h.dias} className="text-xs text-white/60">
-                    <span className="text-white/80">{h.dias}:</span> {h.horario}
+                  <li key={h.dias} className="text-xs text-white/75">
+                    <span className="text-white/90">{h.dias}:</span> {h.horario}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Columna 4: Redes y contacto */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-dorado">
-              Síguenos
-            </h3>
-            <div className="mb-6 flex gap-3">
+            <h3 className="font-display text-xl text-dorado-claro">Síguenos</h3>
+            <div className="mt-4 flex flex-wrap gap-3">
               {REDES_SOCIALES.map((red) => {
                 const Icono = red.icono;
                 return (
@@ -142,7 +122,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={red.etiqueta}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-dorado hover:text-dorado"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-dorado/15 text-dorado-claro transition hover:bg-dorado hover:text-azul-rey"
                   >
                     <Icono />
                   </a>
@@ -150,33 +130,17 @@ export default function Footer() {
               })}
             </div>
 
-            <div className="flex flex-col gap-1">
-              <p className="text-xs text-white/50 uppercase tracking-widest">WhatsApp</p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white/80 transition-colors hover:text-dorado"
-              >
-                +{WHATSAPP_NUMBER}
-              </a>
-            </div>
-
-            <div className="mt-4 flex flex-col gap-1">
-              <p className="text-xs text-white/50 uppercase tracking-widest">Dirección</p>
-              {/* COMPLETAR: dirección real del negocio */}
-              <p className="text-sm text-white/60">Colombia</p>
-            </div>
+            <p className="mt-5 text-xs uppercase tracking-[0.12em] text-white/60">WhatsApp</p>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-1 block text-sm text-white/80 transition hover:text-dorado-claro">
+              +{WHATSAPP_NUMBER}
+            </a>
           </div>
         </div>
 
-        {/* Subfooter */}
-        <div className="flex flex-col items-center justify-between gap-2 border-t border-white/10 py-5 text-xs text-white/40 sm:flex-row">
-          <p>© {AÑO_COPYRIGHT} {NOMBRE_NEGOCIO}. Todos los derechos reservados.</p>
-          <p>
-            Desarrollado por{" "}
-            <span className="text-dorado/70">{DESARROLLADOR.nombre}</span>
-            {" — "}{DESARROLLADOR.empresa}
+        <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-5 text-center sm:flex-row sm:text-left">
+          <p className="text-xs text-white/50">© {AÑO_COPYRIGHT} {NOMBRE_NEGOCIO} | Todos los derechos reservados</p>
+          <p className="text-xs text-white/50">
+            Desarrollado por {DESARROLLADOR.nombre} | {DESARROLLADOR.empresa}
           </p>
         </div>
       </div>

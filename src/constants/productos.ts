@@ -7,56 +7,60 @@ import type { Producto } from "@/types/producto";
 export const PRODUCTOS: Producto[] = [
   {
     id: "producto-1",
-    /* COMPLETAR MANUALMENTE: nombre del producto */
-    nombre: "Producto Facial Premium",
-    /* COMPLETAR MANUALMENTE: descripción del producto */
-    descripcion: "Descripción del producto. Beneficios y modo de uso.",
-    /* COMPLETAR MANUALMENTE: precio en COP */
+    nombre: "Producto Placeholder 1",
+    descripcion: "Producto pendiente por configurar manualmente.",
     precio: 0,
     categoria: "facial",
     badgeCategoria: "Facial",
+    destacado: true,
   },
   {
     id: "producto-2",
-    nombre: "Crema Hidratante Corporal",
-    descripcion: "Descripción del producto. Beneficios y modo de uso.",
+    nombre: "Producto Placeholder 2",
+    descripcion: "Producto pendiente por configurar manualmente.",
     precio: 0,
     categoria: "hidratacion",
     badgeCategoria: "Hidratación",
+    destacado: true,
   },
   {
     id: "producto-3",
-    nombre: "Serum Rejuvenecedor",
-    descripcion: "Descripción del producto. Beneficios y modo de uso.",
-    precio: 0,
-    categoria: "facial",
-    badgeCategoria: "Facial",
-  },
-  {
-    id: "producto-4",
-    nombre: "Aceite Corporal Reafirmante",
-    descripcion: "Descripción del producto. Beneficios y modo de uso.",
+    nombre: "Producto Placeholder 3",
+    descripcion: "Producto pendiente por configurar manualmente.",
     precio: 0,
     categoria: "corporal",
     badgeCategoria: "Corporal",
+    destacado: true,
+  },
+  {
+    id: "producto-4",
+    nombre: "Producto Placeholder 4",
+    descripcion: "Producto pendiente por configurar manualmente.",
+    precio: 0,
+    categoria: "facial",
+    badgeCategoria: "Facial",
+    destacado: false,
   },
   {
     id: "producto-5",
-    nombre: "Mascarilla Purificante",
-    descripcion: "Descripción del producto. Beneficios y modo de uso.",
+    nombre: "Producto Placeholder 5",
+    descripcion: "Producto pendiente por configurar manualmente.",
     precio: 0,
-    categoria: "facial",
-    badgeCategoria: "Facial",
+    categoria: "otro",
+    badgeCategoria: "Especial",
+    destacado: false,
   },
   {
     id: "producto-6",
-    nombre: "Contorno de Ojos",
-    descripcion: "Descripción del producto. Beneficios y modo de uso.",
+    nombre: "Producto Placeholder 6",
+    descripcion: "Producto pendiente por configurar manualmente.",
     precio: 0,
     categoria: "facial",
     badgeCategoria: "Facial",
+    destacado: false,
   },
+  /* COMPLETAR MANUALMENTE con productos reales */
 ];
 
 /** Los 3 productos destacados para mostrar en el Home */
-export const PRODUCTOS_DESTACADOS = PRODUCTOS.slice(0, 3);
+export const PRODUCTOS_DESTACADOS = PRODUCTOS.filter((p) => p.destacado).slice(0, 3);

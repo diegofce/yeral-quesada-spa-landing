@@ -4,58 +4,42 @@ import { formatCOP } from "@/lib/utils";
 import type { Producto } from "@/types/producto";
 
 /**
- * Tarjeta individual de un producto de estética.
- * COMPLETAR MANUALMENTE: nombre, descripción, precio e imagen de cada producto.
+ * Tarjeta individual de producto con espacio para imagen real.
  */
-
 interface ProductoCardProps {
   producto: Producto;
 }
 
 export default function ProductoCard({ producto }: ProductoCardProps) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-borde bg-white shadow-sm transition-shadow hover:shadow-md">
+    <article className="card-luxury group flex h-full flex-col p-4 sm:p-5">
       {/* REEMPLAZAR: imagen del producto */}
-      <div className="overflow-hidden">
-        <ImagePlaceholder
-          label={`Imagen de ${producto.nombre}`}
-          ratio="portrait"
-          className="rounded-none border-0 transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
+      <ImagePlaceholder
+        label={`Imagen de ${producto.nombre}`}
+        ratio="cuadrado"
+        className="rounded-2xl"
+      />
 
-      <div className="flex flex-1 flex-col p-5">
-        {/* Badge categoría */}
-        <span className="mb-3 self-start rounded-full bg-dorado/10 px-3 py-1 text-xs font-medium text-dorado">
+      <div className="mt-4 flex flex-1 flex-col">
+        <span className="mb-2 inline-flex self-start rounded-full bg-dorado/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-azul-rey">
           {producto.badgeCategoria}
         </span>
 
-        {/* Nombre */}
-        {/* COMPLETAR MANUALMENTE: nombre del producto */}
-        <h3 className="mb-2 font-display text-base font-semibold text-carbon">
-          {producto.nombre}
-        </h3>
+        <h3 className="font-display text-xl font-semibold text-azul-rey">{producto.nombre}</h3>
 
-        {/* Descripción */}
-        {/* COMPLETAR MANUALMENTE: descripción del producto */}
-        <p className="mb-4 flex-1 text-sm leading-relaxed text-gris">
-          {producto.descripcion}
-        </p>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-texto-suave">{producto.descripcion}</p>
 
-        {/* Precio */}
-        {/* COMPLETAR MANUALMENTE: precio del producto */}
-        <p className="mb-4 text-sm font-semibold text-azul-rey">
+        <p className="mt-4 font-display text-xl font-bold text-azul-rey">
           {producto.precio > 0 ? formatCOP(producto.precio) : "Consultar precio"}
         </p>
 
-        {/* Botón WhatsApp */}
         <a
           href={`${WHATSAPP_URL}?text=Hola! Me interesa el producto: ${encodeURIComponent(producto.nombre)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center rounded border border-azul-rey px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-azul-rey transition-colors hover:bg-azul-rey hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-azul-rey focus-visible:ring-offset-2"
+          className="mt-4 inline-flex items-center justify-center rounded-full border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-[0.05em] text-azul-rey transition hover:bg-azul-rey hover:text-white"
         >
-          Consultar disponibilidad
+          Consultar
         </a>
       </div>
     </article>

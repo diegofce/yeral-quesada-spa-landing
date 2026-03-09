@@ -151,7 +151,7 @@ export default function PaginaContacto() {
               <div className="overflow-hidden rounded-2xl border border-borde bg-gray-100 aspect-video flex items-center justify-center">
                 <p className="text-xs text-gray-400 text-center px-4">
                   {/* REEMPLAZAR: embed de Google Maps con ubicación real */}
-                  REEMPLAZAR: embed de Google Maps con la ubicación real del negocio
+                  Mapa pendiente por configurar.
                 </p>
               </div>
 

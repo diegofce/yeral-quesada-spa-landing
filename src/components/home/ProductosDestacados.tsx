@@ -3,77 +3,80 @@ import { ArrowRight } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import { WHATSAPP_URL } from "@/constants/config";
-import { PRODUCTOS_DESTACADOS } from "@/constants/productos";
-import { formatCOP } from "@/lib/utils";
 
 /**
- * Preview de 3 productos destacados en la página de inicio.
+ * Vista previa de productos en home.
  */
+const PRODUCTOS_PLACEHOLDER = [
+  {
+    id: "producto-1",
+    nombre: "Producto Facial Premium",
+    descripcion: "Fórmula profesional para complementar tu rutina de cuidado.",
+    precio: "Consultar precio",
+    categoria: "Facial",
+  },
+  {
+    id: "producto-2",
+    nombre: "Sérum Rejuvenecedor",
+    descripcion: "Textura ligera para hidratación y luminosidad inmediata.",
+    precio: "Consultar precio",
+    categoria: "Skincare",
+  },
+  {
+    id: "producto-3",
+    nombre: "Crema Corporal Nutritiva",
+    descripcion: "Nutrición profunda para una piel suave y uniforme.",
+    precio: "Consultar precio",
+    categoria: "Corporal",
+  },
+] as const;
 
 export default function ProductosDestacados() {
   return (
-    <section className="section-padding bg-fondo" aria-labelledby="productos-titulo">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="section-padding bg-white" aria-labelledby="productos-titulo">
+      <div className="container-custom">
         <SectionTitle
-          subtitulo="Nuestra selección"
-          titulo="Productos Seleccionados para Ti"
-          descripcion="Productos profesionales disponibles en consulta o durante tu sesión de tratamiento."
           id="productos-titulo"
+          title="Productos Destacados"
+          subtitle="Selección exclusiva"
+          description="Espacio preparado para que agregues tus productos reales con imagen, precio y descripción."
         />
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {PRODUCTOS_DESTACADOS.map((producto) => (
-            <article
-              key={producto.id}
-              className="group overflow-hidden rounded-2xl border border-borde bg-white shadow-sm transition-shadow hover:shadow-md"
-            >
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {PRODUCTOS_PLACEHOLDER.map((producto) => (
+            <article key={producto.id} className="card-luxury p-5">
               {/* REEMPLAZAR: imagen del producto */}
               <ImagePlaceholder
                 label={`Imagen de ${producto.nombre}`}
-                ratio="portrait"
-                className="rounded-none border-0"
+                ratio="cuadrado"
+                className="rounded-2xl"
               />
 
-              <div className="p-5">
-                {/* Badge categoría */}
-                <span className="mb-2 inline-block rounded-full bg-dorado/10 px-3 py-1 text-xs font-medium text-dorado">
-                  {producto.badgeCategoria}
-                </span>
+              <span className="mt-4 inline-flex rounded-full bg-dorado/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-azul-rey">
+                {producto.categoria}
+              </span>
 
-                {/* Nombre */}
-                <h3 className="mb-2 font-display text-base font-semibold text-carbon">
-                  {producto.nombre}
-                </h3>
+              <h3 className="mt-3 font-display text-2xl text-azul-rey">{producto.nombre}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-texto-suave">{producto.descripcion}</p>
 
-                {/* Descripción */}
-                <p className="mb-4 text-sm leading-relaxed text-gris">
-                  {producto.descripcion}
-                </p>
+              <p className="mt-4 font-display text-xl font-semibold text-azul-rey">{producto.precio}</p>
 
-                {/* Precio */}
-                <p className="mb-4 text-sm font-semibold text-azul-rey">
-                  {producto.precio > 0 ? formatCOP(producto.precio) : "Consultar precio"}
-                </p>
-
-                {/* Botón consultar */}
-                <a
-                  href={`${WHATSAPP_URL}?text=Hola! Me interesa el producto: ${encodeURIComponent(producto.nombre)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center rounded border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-wide text-azul-rey transition-colors hover:bg-azul-rey hover:text-white"
-                >
-                  Consultar disponibilidad
-                </a>
-              </div>
+              <a
+                href={`${WHATSAPP_URL}?text=Hola! Quiero información del producto: ${encodeURIComponent(producto.nombre)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex rounded-full border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-[0.05em] text-azul-rey transition hover:bg-azul-rey hover:text-white"
+              >
+                Consultar
+              </a>
             </article>
           ))}
         </div>
 
-        {/* CTA ver todos */}
         <div className="mt-12 text-center">
           <Link
             href="/productos"
-            className="inline-flex items-center gap-2 text-base font-semibold text-azul-rey transition-colors hover:text-azul-oscuro"
+            className="inline-flex items-center gap-2 text-base font-semibold text-azul-rey transition-colors hover:text-azul-medio"
           >
             Ver todos los productos
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
