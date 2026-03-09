@@ -45,13 +45,13 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="container-custom relative z-10 py-24 md:py-28 lg:py-32">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-5">
+      <div className="container-custom relative z-10 py-28 md:py-32 lg:py-40">
+        <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-5">
           <div className="md:col-span-3">
-            <div className="space-y-6 max-w-3xl">
+            <div className="space-y-8 max-w-3xl">
               <h1
                 id="hero-titulo"
-                className="font-display text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+                className="font-display text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
                 style={{
                   textShadow: '0 2px 20px rgba(0,0,0,0.3)',
                   animation: 'fadeInUp 0.6s 0.2s ease both',
@@ -70,14 +70,14 @@ export default function HeroSection() {
               />
 
               <p
-                className="font-display text-2xl italic text-dorado-claro"
+                className="font-display text-2xl italic text-dorado-claro md:text-3xl"
                 style={{ animation: 'fadeInUp 0.6s 0.4s ease both' }}
               >
                 &quot;{SLOGAN}&quot;
               </p>
 
               <p
-                className="text-base leading-relaxed text-white/85 md:text-lg"
+                className="text-base leading-relaxed text-white/85 md:text-lg lg:text-xl"
                 style={{ animation: 'fadeInUp 0.6s 0.6s ease both' }}
               >
                 Tratamientos profesionales para cuidar tu piel y realzar tu
@@ -86,14 +86,14 @@ export default function HeroSection() {
               </p>
 
               <div
-                className="flex flex-wrap items-center gap-3"
+                className="flex flex-wrap items-center gap-4"
                 style={{ animation: 'fadeInUp 0.6s 0.8s ease both' }}
               >
                 <a
                   href={SAAS_BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-dorado inline-flex items-center gap-2 text-sm"
+                  className="btn-dorado inline-flex items-center gap-2 text-sm md:text-base md:px-8 md:py-4"
                 >
                   <Calendar className="h-4 w-4" aria-hidden="true" />
                   RESERVAR CITA
@@ -101,7 +101,7 @@ export default function HeroSection() {
 
                 <Link
                   href="/servicios"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3 text-sm font-semibold tracking-[0.05em] text-white transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3 text-sm font-semibold tracking-[0.05em] text-white transition hover:bg-white/10 md:px-8 md:py-4 md:text-base"
                 >
                   Ver Servicios
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -110,10 +110,10 @@ export default function HeroSection() {
             </div>
 
             <div
-              className="mt-10 overflow-x-auto pb-1"
+              className="mt-14 overflow-x-auto pb-1"
               style={{ animation: 'fadeInUp 0.6s 1s ease both' }}
             >
-              <div className="inline-flex min-w-max items-center gap-6 text-white">
+              <div className="inline-flex min-w-max items-center gap-8 text-white">
                 <div className="text-center">
                   <p className="font-display text-4xl font-bold text-dorado-brillante">
                     500+
@@ -140,19 +140,6 @@ export default function HeroSection() {
                     Años
                   </p>
                 </div>
-
-                <span className="h-12 w-px bg-dorado/40" aria-hidden="true" />
-
-                <p
-                  className="inline-flex rounded-full border px-4 py-1.5 text-xs font-semibold tracking-[0.15em]"
-                  style={{
-                    background: 'rgba(201,169,110,0.2)',
-                    borderColor: 'rgba(201,169,110,0.5)',
-                    color: 'var(--color-dorado-claro)',
-                  }}
-                >
-                  {'ESTÉTICA FACIAL & CORPORAL'}
-                </p>
               </div>
             </div>
           </div>
