@@ -37,7 +37,7 @@ export default function Navbar() {
       style={{
         background: isScrolled
           ? 'rgba(255,255,255,0.95)'
-          : 'rgba(10,31,78,0.75)',
+          : 'linear-gradient(90deg, #0A1F4E 0%, #1A2744 20%, #3B3070 40%, #2D5FA6 65%, #1A3A6B 85%, #0A1F4E 100%)',
         borderBottom: isScrolled ? 'none' : '1px solid rgba(255,255,255,0.08)',
       }}
     >
