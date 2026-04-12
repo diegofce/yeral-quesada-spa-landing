@@ -1,8 +1,10 @@
 'use client';
 
+import logoSpa from '@/assets/images/logo.jpg';
 import { NOMBRE_CORTO, SAAS_BOOKING_URL } from '@/constants/config';
 import { useScrollNavbar } from '@/hooks/useScrollNavbar';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -47,9 +49,14 @@ export default function Navbar() {
           className="flex items-center gap-2"
           onClick={() => setMenuAbierto(false)}
         >
-          {/* REEMPLAZAR: logo real */}
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-dorado bg-azul-rey font-display text-xs font-bold text-white">
-            EI
+          <span className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-dorado bg-white">
+            <Image
+              src={logoSpa}
+              alt="Logo de Estética Integral"
+              fill
+              sizes="40px"
+              className="object-cover"
+            />
           </span>
           <span
             className={cn('font-display text-lg font-semibold', colorTexto)}

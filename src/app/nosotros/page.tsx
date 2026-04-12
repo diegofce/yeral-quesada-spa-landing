@@ -1,17 +1,19 @@
-import type { Metadata } from "next";
-import { Award, Heart, Users, Clock } from "lucide-react";
-import Breadcrumb from "@/components/layout/Breadcrumb";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
-import SectionTitle from "@/components/ui/SectionTitle";
-import { NOMBRE_NEGOCIO, SITE_URL, HORARIOS } from "@/constants/config";
+import fotoYeral from '@/assets/images/foto_prom_2.jpeg';
+import logoSpa from '@/assets/images/logo_2.jpeg';
+import Breadcrumb from '@/components/layout/Breadcrumb';
+import SectionTitle from '@/components/ui/SectionTitle';
+import { HORARIOS, NOMBRE_NEGOCIO, SITE_URL } from '@/constants/config';
+import { Award, Clock, Heart, Users } from 'lucide-react';
+import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: "Nosotros — Quiénes Somos",
+  title: 'Nosotros — Quiénes Somos',
   description: `Conoce a Yeral Quesada y la historia de ${NOMBRE_NEGOCIO}. Especialistas en estética facial y corporal con atención personalizada.`,
   alternates: { canonical: `${SITE_URL}/nosotros` },
   openGraph: {
     title: `Nosotros | ${NOMBRE_NEGOCIO}`,
-    description: "Conoce nuestra historia, valores y equipo profesional.",
+    description: 'Conoce nuestra historia, valores y equipo profesional.',
     url: `${SITE_URL}/nosotros`,
   },
 };
@@ -19,21 +21,21 @@ export const metadata: Metadata = {
 const VALORES = [
   {
     icono: Award,
-    titulo: "Profesionalismo",
+    titulo: 'Profesionalismo',
     descripcion:
-      "Formación continua y técnicas certificadas para brindarte los mejores resultados.",
+      'Formación continua y técnicas certificadas para brindarte los mejores resultados.',
   },
   {
     icono: Heart,
-    titulo: "Confianza",
+    titulo: 'Confianza',
     descripcion:
-      "Un ambiente seguro, íntimo y acogedor donde te sientes cómoda y en buenas manos.",
+      'Un ambiente seguro, íntimo y acogedor donde te sientes cómoda y en buenas manos.',
   },
   {
     icono: Users,
-    titulo: "Resultados",
+    titulo: 'Resultados',
     descripcion:
-      "Cada tratamiento está orientado a lograr cambios visibles y duraderos en tu piel.",
+      'Cada tratamiento está orientado a lograr cambios visibles y duraderos en tu piel.',
   },
 ] as const;
 
@@ -53,14 +55,14 @@ export default function PaginaNosotros() {
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "32px 32px",
+              'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '32px 32px',
           }}
           aria-hidden="true"
         />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <Breadcrumb
-            items={[{ etiqueta: "Nosotros" }]}
+            items={[{ etiqueta: 'Nosotros' }]}
             className="text-white/60 [&_a]:text-white/60 [&_a:hover]:text-white mb-4"
           />
           <h1
@@ -76,7 +78,10 @@ export default function PaginaNosotros() {
       </section>
 
       {/* Historia */}
-      <section className="section-padding bg-white" aria-labelledby="historia-titulo">
+      <section
+        className="section-padding bg-white"
+        aria-labelledby="historia-titulo"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
@@ -94,36 +99,48 @@ export default function PaginaNosotros() {
               {/* COMPLETAR: historia y misión del negocio */}
               <div className="space-y-4 text-base leading-relaxed text-gris">
                 <p>
-                  Yeral Quesada es una apasionada de la estética y el bienestar, con una
-                  sólida formación en técnicas de estética facial y corporal. Su vocación
-                  nació del deseo de ayudar a las personas a sentirse bien en su propia piel.
+                  Yeral Quesada es una apasionada de la estética y el bienestar,
+                  con una sólida formación en técnicas de estética facial y
+                  corporal. Su vocación nació del deseo de ayudar a las personas
+                  a sentirse bien en su propia piel.
                 </p>
                 <p>
                   {/* COMPLETAR: historia y misión del negocio */}
-                  Fundó <strong className="text-carbon">{NOMBRE_NEGOCIO}</strong> con la
-                  misión de ofrecer tratamientos profesionales de alta calidad en un ambiente
-                  cálido y personalizado, donde cada clienta se sienta única y especial.
+                  Fundó{' '}
+                  <strong className="text-carbon">{NOMBRE_NEGOCIO}</strong> con
+                  la misión de ofrecer tratamientos profesionales de alta
+                  calidad en un ambiente cálido y personalizado, donde cada
+                  clienta se sienta única y especial.
                 </p>
                 <p>
                   {/* COMPLETAR: logros, años de experiencia, número de clientes */}
-                  Con experiencia y dedicación, combina técnicas avanzadas con productos
-                  certificados para garantizar resultados visibles y seguros.
+                  Con experiencia y dedicación, combina técnicas avanzadas con
+                  productos certificados para garantizar resultados visibles y
+                  seguros.
                 </p>
               </div>
             </div>
 
             {/* Foto profesional */}
             <div>
-              {/* REEMPLAZAR: foto profesional de Yeral Quesada */}
-              <ImagePlaceholder
-                label="Foto profesional de Yeral Quesada"
-                ratio="portrait"
-                className="w-full max-w-sm mx-auto"
-              />
-              {/* REEMPLAZAR: logo oficial */}
+              <div className="relative w-full max-w-sm mx-auto overflow-hidden rounded-2xl border border-borde shadow-sm aspect-[3/4]">
+                <Image
+                  src={fotoYeral}
+                  alt="Foto profesional de Yeral Quesada"
+                  fill
+                  sizes="(max-width: 1024px) 75vw, 380px"
+                  className="object-cover"
+                />
+              </div>
               <div className="mt-6 flex justify-center">
-                <div className="rounded-xl border border-borde bg-fondo p-4 text-center">
-                  <p className="text-xs text-gris">Logo pendiente por configurar</p>
+                <div className="relative h-20 w-20 overflow-hidden rounded-xl border border-borde bg-fondo p-1">
+                  <Image
+                    src={logoSpa}
+                    alt="Logo oficial de Estética Integral"
+                    fill
+                    sizes="80px"
+                    className="object-contain"
+                  />
                 </div>
               </div>
             </div>
@@ -132,9 +149,16 @@ export default function PaginaNosotros() {
       </section>
 
       {/* Valores */}
-      <section className="section-padding bg-fondo" aria-labelledby="valores-titulo">
+      <section
+        className="section-padding bg-fondo"
+        aria-labelledby="valores-titulo"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle subtitulo="Lo que nos guía" titulo="Nuestros Valores" id="valores-titulo" />
+          <SectionTitle
+            subtitulo="Lo que nos guía"
+            titulo="Nuestros Valores"
+            id="valores-titulo"
+          />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {VALORES.map((valor) => {
               const Icono = valor.icono;
@@ -149,7 +173,9 @@ export default function PaginaNosotros() {
                   <h3 className="mb-3 font-display text-xl font-semibold text-carbon">
                     {valor.titulo}
                   </h3>
-                  <p className="text-sm leading-relaxed text-gris">{valor.descripcion}</p>
+                  <p className="text-sm leading-relaxed text-gris">
+                    {valor.descripcion}
+                  </p>
                 </div>
               );
             })}
@@ -158,7 +184,10 @@ export default function PaginaNosotros() {
       </section>
 
       {/* Horarios */}
-      <section className="section-padding bg-white" aria-labelledby="horarios-titulo">
+      <section
+        className="section-padding bg-white"
+        aria-labelledby="horarios-titulo"
+      >
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitulo="Cuándo atendemos"
@@ -170,16 +199,21 @@ export default function PaginaNosotros() {
               <div
                 key={h.dias}
                 className={`flex items-center justify-between px-6 py-4 ${
-                  i < HORARIOS.length - 1 ? "border-b border-borde" : ""
-                } ${h.horario === "Cerrado" ? "bg-gray-50" : "bg-white"}`}
+                  i < HORARIOS.length - 1 ? 'border-b border-borde' : ''
+                } ${h.horario === 'Cerrado' ? 'bg-gray-50' : 'bg-white'}`}
               >
                 <div className="flex items-center gap-3">
-                  <Clock className="h-4 w-4 text-dorado flex-shrink-0" aria-hidden="true" />
+                  <Clock
+                    className="h-4 w-4 text-dorado flex-shrink-0"
+                    aria-hidden="true"
+                  />
                   <span className="font-medium text-carbon">{h.dias}</span>
                 </div>
                 <span
                   className={
-                    h.horario === "Cerrado" ? "text-gris" : "font-semibold text-azul-rey"
+                    h.horario === 'Cerrado'
+                      ? 'text-gris'
+                      : 'font-semibold text-azul-rey'
                   }
                 >
                   {h.horario}
@@ -191,7 +225,10 @@ export default function PaginaNosotros() {
       </section>
 
       {/* Certificaciones */}
-      <section className="section-padding bg-fondo" aria-labelledby="certificaciones-titulo">
+      <section
+        className="section-padding bg-fondo"
+        aria-labelledby="certificaciones-titulo"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitulo="Formación"

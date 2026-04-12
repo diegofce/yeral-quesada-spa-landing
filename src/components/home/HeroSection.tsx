@@ -1,6 +1,7 @@
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder';
+import heroImage from '@/assets/images/foto_prom.jpeg';
 import { NOMBRE_NEGOCIO, SAAS_BOOKING_URL, SLOGAN } from '@/constants/config';
 import { ArrowRight, Calendar } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 /**
@@ -164,12 +165,16 @@ export default function HeroSection() {
                 aria-hidden="true"
               />
 
-              {/* REEMPLAZAR: foto principal del spa o de Yeral Quesada */}
-              <ImagePlaceholder
-                label="Foto principal pendiente por configurar"
-                ratio="portrait"
-                className="rounded-[2rem_2rem_2rem_0.5rem] border-2 border-dorado/40 shadow-[0_20px_50px_rgba(201,169,110,0.3)]"
-              />
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem_2rem_2rem_0.5rem] border-2 border-dorado/40 shadow-[0_20px_50px_rgba(201,169,110,0.3)]">
+                <Image
+                  src={heroImage}
+                  alt="Yeral Quesada en cabina de estética"
+                  fill
+                  sizes="(max-width: 1024px) 300px, 360px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
 
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 rounded-xl border border-dorado/40 bg-white/95 px-5 py-2.5 shadow-[var(--shadow-luxury)] backdrop-blur-sm">
                 <p className="whitespace-nowrap text-xs font-semibold tracking-[0.12em] text-azul-rey">

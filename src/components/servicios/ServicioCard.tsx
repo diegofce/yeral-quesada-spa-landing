@@ -1,8 +1,13 @@
-import { Clock, Tag } from "lucide-react";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
-import { SAAS_BOOKING_URL } from "@/constants/config";
-import { formatCOP } from "@/lib/utils";
-import type { Servicio } from "@/types/servicio";
+import postOpFacialImg from '@/assets/images/luz_infra_roja.jpeg';
+import postOpCorporalImg from '@/assets/images/masaje_moldeador.jpeg';
+import porcelanizadoImg from '@/assets/images/pinkglow.jpeg';
+import reductorImg from '@/assets/images/reduccion.jpeg';
+import limpiezaFacialImg from '@/assets/images/tratamiento_facial.jpeg';
+import { SAAS_BOOKING_URL } from '@/constants/config';
+import { formatCOP } from '@/lib/utils';
+import type { Servicio } from '@/types/servicio';
+import { Clock, Tag } from 'lucide-react';
+import Image from 'next/image';
 
 /**
  * Tarjeta individual de un servicio de estética.
@@ -14,21 +19,38 @@ interface ServicioCardProps {
 }
 
 export default function ServicioCard({ servicio }: ServicioCardProps) {
+  const imagenPorServicio = {
+    'limpieza-facial-profunda': limpiezaFacialImg,
+    'porcelanizado-facial': porcelanizadoImg,
+    'tratamiento-postoperatorio-facial': postOpFacialImg,
+    'tratamiento-reductor': reductorImg,
+    'tratamiento-postoperatorio-corporal': postOpCorporalImg,
+  } as const;
+
+  const imagenServicio =
+    imagenPorServicio[servicio.id as keyof typeof imagenPorServicio] ??
+    limpiezaFacialImg;
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-borde bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
-      {/* REEMPLAZAR: imagen del servicio */}
       <div className="overflow-hidden">
-        <ImagePlaceholder
-          label={`Imagen de ${servicio.nombre}`}
-          ratio="landscape"
-          className="rounded-none border-0 transition-transform duration-500 group-hover:scale-105"
-        />
+        <div className="relative aspect-video w-full overflow-hidden">
+          <Image
+            src={imagenServicio}
+            alt={`Imagen de ${servicio.nombre}`}
+            fill
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
         {/* Badge categoría */}
         <span className="mb-3 self-start rounded-full bg-azul-rey/8 px-3 py-1 text-xs font-medium uppercase tracking-wide text-azul-rey">
-          {servicio.categoria === "facial" ? "Estética Facial" : "Estética Corporal"}
+          {servicio.categoria === 'facial'
+            ? 'Estética Facial'
+            : 'Estética Corporal'}
         </span>
 
         {/* Nombre del servicio */}
@@ -60,7 +82,7 @@ export default function ServicioCard({ servicio }: ServicioCardProps) {
           rel="noopener noreferrer"
           className="flex items-center justify-center rounded bg-azul-rey px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow transition-colors hover:bg-azul-oscuro focus:outline-none focus-visible:ring-2 focus-visible:ring-azul-rey focus-visible:ring-offset-2"
         >
-          {servicio.ctaTexto ?? "Reservar Este Servicio"}
+          {servicio.ctaTexto ?? 'Reservar Este Servicio'}
         </a>
       </div>
     </article>

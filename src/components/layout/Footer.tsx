@@ -1,81 +1,108 @@
-import Link from "next/link";
-import { Instagram, Facebook, MessageCircle } from "lucide-react";
+import logoSpa from '@/assets/images/logo.jpg';
 import {
-  NOMBRE_NEGOCIO,
-  SLOGAN,
-  INSTAGRAM_URL,
-  FACEBOOK_URL,
-  TIKTOK_URL,
-  WHATSAPP_URL,
-  WHATSAPP_NUMBER,
-  HORARIOS,
   AÑO_COPYRIGHT,
   DESARROLLADOR,
-} from "@/constants/config";
+  FACEBOOK_URL,
+  HORARIOS,
+  INSTAGRAM_URL,
+  NOMBRE_NEGOCIO,
+  SLOGAN,
+  TIKTOK_URL,
+  WHATSAPP_NUMBER,
+  WHATSAPP_URL,
+} from '@/constants/config';
+import { Facebook, Instagram, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 /**
  * Pie de página principal del sitio.
  */
 const ENLACES_MAPA_SITIO = [
-  { href: "/", etiqueta: "Inicio" },
-  { href: "/servicios", etiqueta: "Servicios" },
-  { href: "/productos", etiqueta: "Productos" },
-  { href: "/nosotros", etiqueta: "Nosotros" },
-  { href: "/galeria", etiqueta: "Galería" },
-  { href: "/contacto", etiqueta: "Contacto" },
+  { href: '/', etiqueta: 'Inicio' },
+  { href: '/servicios', etiqueta: 'Servicios' },
+  { href: '/productos', etiqueta: 'Productos' },
+  { href: '/nosotros', etiqueta: 'Nosotros' },
+  { href: '/galeria', etiqueta: 'Galería' },
+  { href: '/contacto', etiqueta: 'Contacto' },
 ];
 
 const REDES_SOCIALES = [
-  { href: INSTAGRAM_URL, icono: Instagram, etiqueta: "Instagram" },
-  { href: FACEBOOK_URL, icono: Facebook, etiqueta: "Facebook" },
+  { href: INSTAGRAM_URL, icono: Instagram, etiqueta: 'Instagram' },
+  { href: FACEBOOK_URL, icono: Facebook, etiqueta: 'Facebook' },
   {
     href: TIKTOK_URL,
     icono: () => (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5 fill-current"
+        aria-hidden="true"
+      >
         <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.27 8.27 0 004.83 1.55V6.84a4.85 4.85 0 01-1.06-.15z" />
       </svg>
     ),
-    etiqueta: "TikTok",
+    etiqueta: 'TikTok',
   },
-  { href: WHATSAPP_URL, icono: MessageCircle, etiqueta: "WhatsApp" },
+  { href: WHATSAPP_URL, icono: MessageCircle, etiqueta: 'WhatsApp' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-azul-rey text-white" role="contentinfo">
+    <footer
+      className="relative overflow-hidden bg-azul-rey text-white"
+      role="contentinfo"
+    >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
+          backgroundImage:
+            'radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)',
+          backgroundSize: '26px 26px',
         }}
         aria-hidden="true"
       />
 
-      <div className="h-1 w-full" style={{ background: "var(--gradient-dorado)" }} aria-hidden="true" />
+      <div
+        className="h-1 w-full"
+        style={{ background: 'var(--gradient-dorado)' }}
+        aria-hidden="true"
+      />
 
       <div className="container-custom relative z-10 py-14">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            {/* REEMPLAZAR: logo oficial */}
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xs font-bold text-azul-rey">
-                EI
+              <span className="relative h-10 w-10 overflow-hidden rounded-full bg-white">
+                <Image
+                  src={logoSpa}
+                  alt="Logo Estética Integral"
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
               </span>
               <p className="font-display text-lg">{NOMBRE_NEGOCIO}</p>
             </div>
-            <p className="mt-4 text-sm italic text-white/80">&quot;{SLOGAN}&quot;</p>
+            <p className="mt-4 text-sm italic text-white/80">
+              &quot;{SLOGAN}&quot;
+            </p>
             <p className="mt-3 text-sm text-white/75">
-              Centro de estética facial y corporal enfocado en bienestar, belleza y resultados.
+              Centro de estética facial y corporal enfocado en bienestar,
+              belleza y resultados.
             </p>
           </div>
 
           <div>
-            <h3 className="font-display text-xl text-dorado-claro">Mapa del Sitio</h3>
+            <h3 className="font-display text-xl text-dorado-claro">
+              Mapa del Sitio
+            </h3>
             <ul className="mt-4 space-y-2">
               {ENLACES_MAPA_SITIO.map((enlace) => (
                 <li key={enlace.href}>
-                  <Link href={enlace.href} className="text-sm text-white/70 transition hover:text-dorado-claro">
+                  <Link
+                    href={enlace.href}
+                    className="text-sm text-white/70 transition hover:text-dorado-claro"
+                  >
                     {enlace.etiqueta}
                   </Link>
                 </li>
@@ -87,19 +114,27 @@ export default function Footer() {
             <h3 className="font-display text-xl text-dorado-claro">Legal</h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/politica-de-privacidad" className="text-sm text-white/70 transition hover:text-dorado-claro">
+                <Link
+                  href="/politica-de-privacidad"
+                  className="text-sm text-white/70 transition hover:text-dorado-claro"
+                >
                   Política de Privacidad
                 </Link>
               </li>
               <li>
-                <Link href="/terminos-y-condiciones" className="text-sm text-white/70 transition hover:text-dorado-claro">
+                <Link
+                  href="/terminos-y-condiciones"
+                  className="text-sm text-white/70 transition hover:text-dorado-claro"
+                >
                   Términos y Condiciones
                 </Link>
               </li>
             </ul>
 
             <div className="mt-5 rounded-xl border border-dorado/20 bg-white/5 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-dorado-claro">Horarios</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-dorado-claro">
+                Horarios
+              </p>
               <ul className="mt-2 space-y-1">
                 {HORARIOS.map((h) => (
                   <li key={h.dias} className="text-xs text-white/75">
@@ -130,15 +165,24 @@ export default function Footer() {
               })}
             </div>
 
-            <p className="mt-5 text-xs uppercase tracking-[0.12em] text-white/60">WhatsApp</p>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-1 block text-sm text-white/80 transition hover:text-dorado-claro">
+            <p className="mt-5 text-xs uppercase tracking-[0.12em] text-white/60">
+              WhatsApp
+            </p>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 block text-sm text-white/80 transition hover:text-dorado-claro"
+            >
               +{WHATSAPP_NUMBER}
             </a>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-5 text-center sm:flex-row sm:text-left">
-          <p className="text-xs text-white/50">© {AÑO_COPYRIGHT} {NOMBRE_NEGOCIO} | Todos los derechos reservados</p>
+          <p className="text-xs text-white/50">
+            © {AÑO_COPYRIGHT} {NOMBRE_NEGOCIO} | Todos los derechos reservados
+          </p>
           <p className="text-xs text-white/50">
             Desarrollado por {DESARROLLADOR.nombre} | {DESARROLLADOR.empresa}
           </p>
