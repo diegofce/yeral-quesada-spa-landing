@@ -34,7 +34,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)]"
+      className="group fixed bottom-24 right-5 z-50 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] md:bottom-6 md:right-6"
       style={{ animation: 'pulse-glow-green 2.4s ease infinite' }}
     >
       <MessageCircle className="h-7 w-7" aria-hidden="true" />

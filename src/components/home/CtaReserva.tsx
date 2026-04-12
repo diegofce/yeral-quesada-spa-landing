@@ -25,7 +25,7 @@ export default function CtaReserva() {
         aria-hidden="true"
       />
 
-      <div className="container-custom relative z-10 text-center">
+      <div className="container-custom relative z-10 text-center reveal">
         <h2 id="cta-titulo" className="font-display text-3xl font-bold text-white md:text-4xl lg:text-5xl">
           ¿Lista para transformar tu piel?
         </h2>

@@ -20,7 +20,7 @@ export default function SobreNosotrosPreview() {
     >
       <div className="container-custom">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <div className="order-2 lg:order-1">
+          <div className="order-2 reveal lg:order-1">
             <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-[40%_60%_60%_40%/40%_40%_60%_60%] border-[3px] border-dorado shadow-[var(--shadow-luxury)] aspect-[3/4]">
               <Image
                 src={fotoYeral}
@@ -32,7 +32,7 @@ export default function SobreNosotrosPreview() {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2">
+          <div className="order-1 reveal reveal-delay-2 lg:order-2">
             <p className="mb-3 inline-flex rounded-full border border-dorado/40 bg-dorado/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-dorado">
               Sobre Nosotros
             </p>

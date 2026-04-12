@@ -68,10 +68,16 @@ export default function Testimonios() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {TESTIMONIOS.map((testimonio) => (
+          {TESTIMONIOS.map((testimonio, indice) => (
             <article
               key={testimonio.nombre}
-              className="card-luxury relative p-6"
+              className={`card-luxury relative p-6 ${
+                indice === 0
+                  ? 'reveal reveal-delay-1'
+                  : indice === 1
+                    ? 'reveal reveal-delay-2'
+                    : 'reveal reveal-delay-3'
+              }`}
             >
               <span
                 className="absolute left-5 top-2 font-display text-6xl text-dorado/30"

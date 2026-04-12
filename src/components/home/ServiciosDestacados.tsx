@@ -55,14 +55,24 @@ export default function ServiciosDestacados() {
           description="Tratamientos diseñados para resaltar tu belleza natural con un enfoque profesional, femenino y exclusivo."
           align="center"
           variant="claro"
+          className="reveal"
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          {SERVICIOS_HOME.map((servicio) => {
+          {SERVICIOS_HOME.map((servicio, indice) => {
             const Icono = servicio.icono;
+            const clasesReveal = [
+              'reveal reveal-delay-1',
+              'reveal reveal-delay-2',
+              'reveal reveal-delay-3',
+              'reveal reveal-delay-4',
+            ];
 
             return (
-              <article key={servicio.id} className="card-luxury relative p-6">
+              <article
+                key={servicio.id}
+                className={`card-luxury relative p-6 ${clasesReveal[indice]}`}
+              >
                 <span
                   className="absolute left-0 right-0 top-0 h-[3px] rounded-t-[1.5rem]"
                   style={{ background: 'var(--gradient-dorado)' }}

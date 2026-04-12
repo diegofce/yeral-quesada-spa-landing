@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BarraAccionMobile from "@/components/layout/BarraAccionMobile";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { NOMBRE_NEGOCIO, SLOGAN, SITE_URL } from "@/constants/config";
 
@@ -133,6 +134,9 @@ export default function RootLayout({
 
         {/* Botón flotante de WhatsApp */}
         <WhatsAppButton />
+
+        {/* Barra sticky de acción en mobile */}
+        <BarraAccionMobile />
       </body>
     </html>
   );

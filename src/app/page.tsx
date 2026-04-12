@@ -1,12 +1,13 @@
 import CtaReserva from '@/components/home/CtaReserva';
+import CarruselGaleriaSection from '@/components/home/CarruselGaleriaSection';
 import GaleriaPreview from '@/components/home/GaleriaPreview';
 import HeroSection from '@/components/home/HeroSection';
 import ProductosDestacados from '@/components/home/ProductosDestacados';
+import ScrollRevealProvider from '@/components/home/ScrollRevealProvider';
 import ServiciosDestacados from '@/components/home/ServiciosDestacados';
 import SobreNosotrosPreview from '@/components/home/SobreNosotrosPreview';
 import Testimonios from '@/components/home/Testimonios';
 import TrustBar from '@/components/home/TrustBar';
-import UbicacionSection from '@/components/home/UbicacionSection';
 import { NOMBRE_NEGOCIO, SITE_URL, SLOGAN } from '@/constants/config';
 import type { Metadata } from 'next';
 
@@ -34,31 +35,16 @@ export const metadata: Metadata = {
 export default function PaginaInicio() {
   return (
     <>
-      {/* 1. Hero principal */}
+      <ScrollRevealProvider />
+
       <HeroSection />
-
-      {/* 2. Franja de confianza */}
       <TrustBar />
-
-      {/* 3. Ubicación y mapa */}
-      <UbicacionSection />
-
-      {/* 4. Servicios destacados */}
+      <CarruselGaleriaSection />
       <ServiciosDestacados />
-
-      {/* 5. CTA de reserva */}
       <CtaReserva />
-
-      {/* 6. Productos destacados */}
       <ProductosDestacados />
-
-      {/* 7. Preview de galería */}
       <GaleriaPreview />
-
-      {/* 8. Testimonios */}
       <Testimonios />
-
-      {/* 9. Preview sobre nosotros */}
       <SobreNosotrosPreview />
     </>
   );

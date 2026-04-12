@@ -33,7 +33,7 @@ export default function TrustBar() {
       style={{ background: 'var(--gradient-azul-dorado)' }}
       aria-label="Diferenciales del spa"
     >
-      <div className="container-custom">
+      <div className="container-custom reveal">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-0">
           {ITEMS_CONFIANZA.map((item) => {
             const Icono = item.icono;

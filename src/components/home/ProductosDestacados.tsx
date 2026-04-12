@@ -31,7 +31,7 @@ export default function ProductosDestacados() {
           description="Selección de productos profesionales que complementan nuestros tratamientos faciales y corporales."
         />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 reveal">
           {PRODUCTOS_DESTACADOS.map((producto) => (
             <article key={producto.id} className="card-luxury p-5">
               <div className="relative aspect-square overflow-hidden rounded-2xl">

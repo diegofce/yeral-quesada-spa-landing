@@ -1,13 +1,15 @@
 import type { NextConfig } from 'next';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Configuración principal de Next.js
  * Incluye headers de seguridad y optimización de imágenes
  */
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: __dirname,
-  },
+  outputFileTracingRoot: projectRoot,
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],

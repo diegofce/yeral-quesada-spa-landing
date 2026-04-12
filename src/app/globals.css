@@ -320,3 +320,108 @@ body {
     padding: 4rem 0;
   }
 }
+
+/* Brillo animado en botones */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 35%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: btn-shine 3.5s ease infinite;
+}
+
+@keyframes btn-shine {
+  0%,
+  100% {
+    left: -60%;
+  }
+  45%,
+  55% {
+    left: 120%;
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.12s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.24s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.36s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.48s;
+}
+
+/* Feedback táctil mobile */
+@media (hover: none) {
+  .btn-dorado:active {
+    transform: scale(0.97);
+    opacity: 0.88;
+  }
+
+  .btn-azul:active {
+    transform: scale(0.97);
+    opacity: 0.88;
+  }
+
+  .card-luxury:active {
+    transform: scale(0.99);
+  }
+}
+
+/* Refinamiento mobile */
+@media (max-width: 640px) {
+  .section-padding {
+    padding: 3.5rem 0;
+  }
+
+  .container-custom {
+    padding: 0 1.2rem;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+}
+
+/* Gradiente texto dorado */
+.text-gradient-dorado {
+  background: var(--gradient-dorado);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
