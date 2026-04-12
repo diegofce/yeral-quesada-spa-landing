@@ -29,8 +29,8 @@ export default function UbicacionSection() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-borde shadow-sm">
-          <div className="aspect-video w-full">
+        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-2xl border border-borde shadow-sm">
+          <div className="h-[260px] w-full md:h-[320px]">
             <iframe
               src={GOOGLE_MAPS_EMBED_URL}
               title="Mapa de Yeral Quesada Estética Integral Spa"

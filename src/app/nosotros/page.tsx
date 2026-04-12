@@ -1,5 +1,5 @@
 import fotoYeral from '@/assets/images/foto_prom_2.jpeg';
-import logoSpa from '@/assets/images/logo_2.jpeg';
+import logoSpa from '@/assets/images/logoFinal.png';
 import Breadcrumb from '@/components/layout/Breadcrumb';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { HORARIOS, NOMBRE_NEGOCIO, SITE_URL } from '@/constants/config';

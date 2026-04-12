@@ -1,4 +1,4 @@
-import logoSpa from '@/assets/images/logo.jpg';
+import logoSpa from '@/assets/images/logoFinal.png';
 import {
   AÑO_COPYRIGHT,
   DESARROLLADOR,

@@ -1,6 +1,6 @@
 'use client';
 
-import logoSpa from '@/assets/images/logo.jpg';
+import logoSpa from '@/assets/images/logoFinal.png';
 import { NOMBRE_CORTO, SAAS_BOOKING_URL } from '@/constants/config';
 import { useScrollNavbar } from '@/hooks/useScrollNavbar';
 import { cn } from '@/lib/utils';
