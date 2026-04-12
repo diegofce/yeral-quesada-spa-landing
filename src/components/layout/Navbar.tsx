@@ -1,7 +1,7 @@
 'use client';
 
 import logoSpa from '@/assets/images/logoFinal.png';
-import { NOMBRE_CORTO, SAAS_BOOKING_URL } from '@/constants/config';
+import { SAAS_BOOKING_URL } from '@/constants/config';
 import { useScrollNavbar } from '@/hooks/useScrollNavbar';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -25,8 +25,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const isScrolled = useScrollNavbar(50);
   const [menuAbierto, setMenuAbierto] = useState(false);
-
-  const colorTexto = isScrolled ? 'text-azul-rey' : 'text-white';
 
   return (
     <header
@@ -57,11 +55,6 @@ export default function Navbar() {
               sizes="40px"
               className="object-cover"
             />
-          </span>
-          <span
-            className={cn('font-display text-lg font-semibold', colorTexto)}
-          >
-            {NOMBRE_CORTO}
           </span>
         </Link>
 

@@ -60,8 +60,12 @@ export default function Testimonios() {
           description="Opiniones que reflejan confianza, resultados y atención personalizada."
         />
 
-        <div className="mx-auto mb-10 w-full max-w-3xl overflow-hidden rounded-2xl border border-dorado/25 bg-white shadow-sm">
-          <video controls preload="metadata" className="h-full w-full">
+        <div className="mx-auto mb-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-dorado/25 bg-white shadow-sm">
+          <video
+            controls
+            preload="metadata"
+            className="aspect-video h-auto max-h-[300px] w-full object-cover sm:max-h-[360px]"
+          >
             <source src="/testimonio.mp4" type="video/mp4" />
             Tu navegador no soporta video HTML5.
           </video>

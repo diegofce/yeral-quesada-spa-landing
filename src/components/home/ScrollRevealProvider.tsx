@@ -8,7 +8,16 @@ import { useEffect } from 'react';
  */
 export default function ScrollRevealProvider() {
   useEffect(() => {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const elementos = document.querySelectorAll('.reveal');
+
+    if (!('IntersectionObserver' in window)) {
+      elementos.forEach((elemento) => {
+        elemento.classList.add('visible');
+      });
       return;
     }
 
@@ -24,11 +33,21 @@ export default function ScrollRevealProvider() {
       { threshold: 0.1 },
     );
 
-    document.querySelectorAll('.reveal').forEach((elemento) => {
+    elementos.forEach((elemento) => {
       observer.observe(elemento);
     });
 
-    return () => observer.disconnect();
+    // Fallback defensivo para evitar secciones en blanco si el observer falla.
+    const timeoutFallback = window.setTimeout(() => {
+      elementos.forEach((elemento) => {
+        elemento.classList.add('visible');
+      });
+    }, 1500);
+
+    return () => {
+      window.clearTimeout(timeoutFallback);
+      observer.disconnect();
+    };
   }, []);
 
   return null;
