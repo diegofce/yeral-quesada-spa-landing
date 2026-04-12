@@ -1,13 +1,14 @@
 'use client';
 
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 /** Una foto del carrusel */
 interface FotoCarrusel {
-  src: string;
+  src: string | StaticImageData;
   alt: string;
 }
 
@@ -112,7 +113,7 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
         >
           {fotos.map((foto, indice) => (
             <div
-              key={foto.src}
+              key={`${indice}-${foto.alt}`}
               className="absolute inset-0 transition-opacity duration-[1000ms] ease-in-out"
               style={{ opacity: indice === activo ? 1 : 0 }}
               aria-hidden={indice !== activo}

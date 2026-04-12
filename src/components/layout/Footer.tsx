@@ -4,9 +4,11 @@ import {
   AÑO_COPYRIGHT,
   DESARROLLADOR,
   FACEBOOK_URL,
+  GOOGLE_MAPS_EMBED_URL,
   HORARIOS,
   INSTAGRAM_URL,
   NOMBRE_NEGOCIO,
+  NOMBRE_SEDE,
   SLOGAN,
   TIKTOK_URL,
   WHATSAPP_NUMBER,
@@ -192,6 +194,18 @@ export default function Footer() {
             >
               +{WHATSAPP_NUMBER}
             </a>
+
+            <div className="mt-5 overflow-hidden rounded-xl border border-dorado/20 bg-white/5">
+              <div className="relative h-36 w-full">
+                <iframe
+                  title={`Ubicación de ${NOMBRE_SEDE}`}
+                  src={GOOGLE_MAPS_EMBED_URL}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 h-full w-full"
+                />
+              </div>
+            </div>
           </div>
         </div>
 

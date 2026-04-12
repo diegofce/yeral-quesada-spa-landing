@@ -59,11 +59,11 @@ export default function GaleriaPreview() {
                 />
               </div>
 
-              <div className="absolute inset-0 flex items-center justify-center bg-transparent transition duration-300 group-hover:bg-[linear-gradient(135deg,rgba(26,58,107,0.55),rgba(201,169,110,0.45))]">
-                <ZoomIn
-                  className="h-8 w-8 text-dorado-brillante opacity-0 transition duration-300 group-hover:opacity-100"
-                  aria-hidden="true"
-                />
+              <div className="absolute inset-0 flex items-end justify-center bg-transparent p-4 transition duration-300 group-hover:bg-[linear-gradient(135deg,rgba(26,58,107,0.55),rgba(201,169,110,0.45))]">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/35 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100">
+                  <ZoomIn className="h-4 w-4" aria-hidden="true" />
+                  Ver imagen completa
+                </span>
               </div>
             </article>
           ))}

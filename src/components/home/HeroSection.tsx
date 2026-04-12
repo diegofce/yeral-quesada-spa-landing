@@ -12,7 +12,7 @@ export default function HeroSection() {
     <section
       className="relative overflow-hidden"
       aria-labelledby="hero-titulo"
-      style={{ minHeight: '100svh' }}
+      style={{ minHeight: '92svh' }}
     >
       <Image
         src={heroImage}
@@ -49,9 +49,9 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="container-custom relative z-10 flex min-h-[100svh] items-center py-28 pb-24 pt-28 md:py-32 lg:py-40">
+      <div className="container-custom relative z-10 flex min-h-[92svh] items-center py-20 pb-16 pt-20 md:py-28 md:pb-24 md:pt-24 lg:py-36 lg:pb-28 lg:pt-28">
         <div className="w-full max-w-[680px] md:max-w-[55%]">
-          <div className="mt-6 space-y-8">
+          <div className="mt-5 space-y-6 md:mt-6 md:space-y-8">
             <h1
               id="hero-titulo"
               className="font-display text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl xl:text-7xl"

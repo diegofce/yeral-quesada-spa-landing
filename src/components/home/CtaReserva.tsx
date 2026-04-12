@@ -13,7 +13,7 @@ import Image from 'next/image';
 export default function CtaReserva() {
   return (
     <section
-      className="relative overflow-hidden py-20"
+      className="relative overflow-hidden py-16 sm:py-20"
       aria-labelledby="cta-titulo"
     >
       <Image

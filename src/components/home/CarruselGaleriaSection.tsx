@@ -1,3 +1,14 @@
+import foto1 from '@/assets/images/galeria/foto_1.jpeg';
+import foto2 from '@/assets/images/galeria/foto_2.jpeg';
+import foto3 from '@/assets/images/galeria/foto_3.jpeg';
+import foto4 from '@/assets/images/galeria/foto_4.jpeg';
+import foto5 from '@/assets/images/galeria/foto_5.jpeg';
+import foto6 from '@/assets/images/galeria/foto_6.jpeg';
+import foto7 from '@/assets/images/galeria/foto_7.jpeg';
+import foto8 from '@/assets/images/galeria/foto_8.jpeg';
+import foto9 from '@/assets/images/galeria/foto_9.jpeg';
+import type { StaticImageData } from 'next/image';
+
 import CarruselGaleria from './CarruselGaleria';
 
 /**
@@ -6,46 +17,46 @@ import CarruselGaleria from './CarruselGaleria';
  */
 const FOTOS_GALERIA = [
   {
-    src: '/images/galeria/galeria-1.jpg',
+    src: foto1,
     alt: 'Tratamiento corporal en Estética Integral Yeral Quesada',
   },
   {
-    src: '/images/galeria/galeria-2.jpg',
+    src: foto2,
     alt: 'Cabina equipada con tecnología de última generación',
   },
   {
-    src: '/images/galeria/galeria-3.jpg',
+    src: foto3,
     alt: 'Limpieza facial profunda profesional',
   },
   {
-    src: '/images/galeria/galeria-4.jpg',
+    src: foto4,
     alt: 'Tratamiento reductor corporal',
   },
   {
-    src: '/images/galeria/galeria-5.jpg',
+    src: foto5,
     alt: 'Porcelanizado facial con atención especializada',
   },
   {
-    src: '/images/galeria/galeria-6.jpg',
+    src: foto6,
     alt: 'Yeral Quesada atendiendo a una clienta en cabina',
   },
   {
-    src: '/images/galeria/galeria-7.jpg',
+    src: foto7,
     alt: 'Tratamiento postoperatorio especializado',
   },
   {
-    src: '/images/galeria/galeria-8.jpg',
+    src: foto8,
     alt: 'Equipos profesionales de estética en funcionamiento',
   },
   {
-    src: '/images/galeria/galeria-9.jpg',
+    src: foto9,
     alt: 'Ambiente exclusivo del spa con iluminación cálida',
   },
   {
-    src: '/images/galeria/galeria-10.jpg',
+    src: foto1,
     alt: 'Imagen principal del spa Estética Integral Yeral Quesada',
   },
-] as const;
+] as const satisfies ReadonlyArray<{ src: StaticImageData; alt: string }>;
 
 export default function CarruselGaleriaSection() {
   return <CarruselGaleria fotos={[...FOTOS_GALERIA]} />;
