@@ -1,60 +1,60 @@
-import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/constants/config";
+import { SITE_LAST_MODIFIED, SITE_URL } from '@/constants/config';
+import type { MetadataRoute } from 'next';
 
 /**
  * Sitemap generado automáticamente por Next.js.
  * Se accede en: /sitemap.xml
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const fechaActual = new Date();
+  const lastModified = new Date(SITE_LAST_MODIFIED);
 
   return [
     {
       url: SITE_URL,
-      lastModified: fechaActual,
-      changeFrequency: "weekly",
+      lastModified,
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
       url: `${SITE_URL}/servicios`,
-      lastModified: fechaActual,
-      changeFrequency: "monthly",
+      lastModified,
+      changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/productos`,
-      lastModified: fechaActual,
-      changeFrequency: "monthly",
+      lastModified,
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/nosotros`,
-      lastModified: fechaActual,
-      changeFrequency: "monthly",
+      lastModified,
+      changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/galeria`,
-      lastModified: fechaActual,
-      changeFrequency: "monthly",
+      lastModified,
+      changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/contacto`,
-      lastModified: fechaActual,
-      changeFrequency: "yearly",
+      lastModified,
+      changeFrequency: 'yearly',
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/politica-de-privacidad`,
-      lastModified: fechaActual,
-      changeFrequency: "yearly",
+      lastModified,
+      changeFrequency: 'yearly',
       priority: 0.2,
     },
     {
       url: `${SITE_URL}/terminos-y-condiciones`,
-      lastModified: fechaActual,
-      changeFrequency: "yearly",
+      lastModified,
+      changeFrequency: 'yearly',
       priority: 0.2,
     },
   ];

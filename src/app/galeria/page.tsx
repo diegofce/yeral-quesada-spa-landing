@@ -1,22 +1,21 @@
-import type { Metadata } from "next";
-import Breadcrumb from "@/components/layout/Breadcrumb";
-import GaleriaGrid from "@/components/galeria/GaleriaGrid";
-import { NOMBRE_NEGOCIO, SITE_URL } from "@/constants/config";
+import GaleriaGrid from '@/components/galeria/GaleriaGrid';
+import Breadcrumb from '@/components/layout/Breadcrumb';
+import { NOMBRE_NEGOCIO, SITE_URL } from '@/constants/config';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Galería de Resultados y Trabajos",
+  title: 'Galería de Resultados y Trabajos',
   description: `Galería de fotos de ${NOMBRE_NEGOCIO}. Resultados de tratamientos faciales y corporales, instalaciones del spa.`,
   alternates: { canonical: `${SITE_URL}/galeria` },
   openGraph: {
     title: `Galería | ${NOMBRE_NEGOCIO}`,
-    description: "Resultados reales de nuestros tratamientos de estética.",
+    description: 'Resultados reales de nuestros tratamientos de estética.',
     url: `${SITE_URL}/galeria`,
   },
 };
 
 /**
  * Página de galería con grid masonry, filtros y lightbox.
- * REEMPLAZAR: las imágenes placeholder en GaleriaGrid.tsx
  */
 export default function PaginaGaleria() {
   return (
@@ -30,14 +29,14 @@ export default function PaginaGaleria() {
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "32px 32px",
+              'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '32px 32px',
           }}
           aria-hidden="true"
         />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <Breadcrumb
-            items={[{ etiqueta: "Galería" }]}
+            items={[{ etiqueta: 'Galería' }]}
             className="text-white/60 [&_a]:text-white/60 [&_a:hover]:text-white mb-4"
           />
           <h1
@@ -53,7 +52,10 @@ export default function PaginaGaleria() {
       </section>
 
       {/* Galería */}
-      <section className="section-padding bg-white" aria-label="Galería de fotos">
+      <section
+        className="section-padding bg-white"
+        aria-label="Galería de fotos"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <GaleriaGrid />
         </div>

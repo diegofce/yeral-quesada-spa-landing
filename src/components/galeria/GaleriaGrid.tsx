@@ -20,7 +20,6 @@ import Lightbox from './Lightbox';
 /**
  * Grid masonry de la galería completa con lightbox.
  * Filtros por categoría: Todos | Facial | Corporal | Instalaciones.
- * REEMPLAZAR: las imágenes placeholder por fotos reales con next/Image.
  */
 
 type CategoriaFiltro = 'todos' | 'facial' | 'corporal' | 'instalaciones';

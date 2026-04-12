@@ -2,12 +2,11 @@ import ampollasImg from '@/assets/images/ampollas.jpeg';
 import fomaxImg from '@/assets/images/fomax.jpeg';
 import pinkGlowImg from '@/assets/images/pinkglow_2.jpeg';
 import SectionTitle from '@/components/ui/SectionTitle';
-import { crearWhatsAppUrl } from '@/constants/config';
+import { WHATSAPP_URL } from '@/constants/config';
 import { PRODUCTOS_DESTACADOS } from '@/constants/productos';
 import { formatCOP } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 /**
  * Vista previa de productos en home.
@@ -37,7 +36,11 @@ export default function ProductosDestacados() {
             <article key={producto.id} className="card-luxury p-5">
               <div className="relative aspect-square overflow-hidden rounded-2xl">
                 <Image
-                  src={IMAGENES_DESTACADAS[producto.id as keyof typeof IMAGENES_DESTACADAS] ?? ampollasImg}
+                  src={
+                    IMAGENES_DESTACADAS[
+                      producto.id as keyof typeof IMAGENES_DESTACADAS
+                    ] ?? ampollasImg
+                  }
                   alt={`Imagen de ${producto.nombre}`}
                   fill
                   sizes="(max-width: 1024px) 50vw, 33vw"
@@ -61,9 +64,7 @@ export default function ProductosDestacados() {
               </p>
 
               <a
-                href={crearWhatsAppUrl(
-                  `Hola, quiero información del producto: ${producto.nombre}`,
-                )}
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex rounded-full border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-[0.05em] text-azul-rey transition hover:bg-azul-rey hover:text-white"
@@ -75,13 +76,15 @@ export default function ProductosDestacados() {
         </div>
 
         <div className="mt-12 text-center">
-          <Link
-            href="/productos"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-base font-semibold text-azul-rey transition-colors hover:text-azul-medio"
           >
-            Ver todos los productos
+            Escribir por WhatsApp
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

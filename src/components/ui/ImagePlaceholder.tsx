@@ -51,7 +51,6 @@ export default function ImagePlaceholder({
         <ImageIcon className="h-7 w-7 text-dorado/60" aria-hidden="true" />
       </div>
       <span className="relative z-10 max-w-[80%] text-center font-sans text-[11px] leading-tight tracking-wide text-azul-rey/35">
-        {/* REEMPLAZAR: imagen real */}
         {label}
       </span>
     </div>

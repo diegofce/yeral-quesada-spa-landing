@@ -34,12 +34,16 @@ describe('FormularioContacto', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/te redirigimos a whatsapp para completar el env[ií]o/i),
+        screen.getByText(
+          /te redirigimos a whatsapp para completar el env[ií]o/i,
+        ),
       ).toBeInTheDocument();
     });
 
     expect(windowOpenSpy).toHaveBeenCalledTimes(1);
-    expect(windowOpenSpy.mock.calls[0]?.[0]).toMatch(/^https:\/\/wa\.me\//);
+    expect(windowOpenSpy.mock.calls[0]?.[0]).toMatch(
+      /^https:\/\/api\.whatsapp\.com\/send\?phone=/,
+    );
 
     windowOpenSpy.mockRestore();
   });

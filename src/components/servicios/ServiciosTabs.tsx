@@ -1,22 +1,25 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import ServicioCard from "./ServicioCard";
-import { SERVICIOS_FACIALES, SERVICIOS_CORPORALES } from "@/constants/servicios";
+import {
+  SERVICIOS_CORPORALES,
+  SERVICIOS_FACIALES,
+} from '@/constants/servicios';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import ServicioCard from './ServicioCard';
 
 /**
  * Tabs para alternar entre servicios faciales y corporales.
  * Estado local con useState — requiere "use client".
  */
 
-type TabActiva = "facial" | "corporal";
+type TabActiva = 'facial' | 'corporal';
 
 export default function ServiciosTabs() {
-  const [tabActiva, setTabActiva] = useState<TabActiva>("facial");
+  const [tabActiva, setTabActiva] = useState<TabActiva>('facial');
 
   const serviciosMostrados =
-    tabActiva === "facial" ? SERVICIOS_FACIALES : SERVICIOS_CORPORALES;
+    tabActiva === 'facial' ? SERVICIOS_FACIALES : SERVICIOS_CORPORALES;
 
   return (
     <div>
@@ -27,7 +30,7 @@ export default function ServiciosTabs() {
         aria-label="Categorías de servicios"
       >
         <div className="inline-flex rounded-full border border-borde bg-fondo p-1">
-          {(["facial", "corporal"] as TabActiva[]).map((tab) => (
+          {(['facial', 'corporal'] as TabActiva[]).map((tab) => (
             <button
               key={tab}
               role="tab"
@@ -36,13 +39,13 @@ export default function ServiciosTabs() {
               id={`tab-${tab}`}
               onClick={() => setTabActiva(tab)}
               className={cn(
-                "rounded-full px-6 py-2.5 text-sm font-semibold uppercase tracking-wide transition-all duration-200",
+                'rounded-full px-6 py-2.5 text-sm font-semibold uppercase tracking-wide transition-all duration-200',
                 tabActiva === tab
-                  ? "bg-azul-rey text-white shadow-sm"
-                  : "text-gris hover:text-carbon"
+                  ? 'bg-azul-rey text-white shadow-sm'
+                  : 'text-gris hover:text-carbon',
               )}
             >
-              Estética {tab === "facial" ? "Facial" : "Corporal"}
+              Estética {tab === 'facial' ? 'Facial' : 'Corporal'}
             </button>
           ))}
         </div>
@@ -59,9 +62,6 @@ export default function ServiciosTabs() {
             <ServicioCard key={servicio.id} servicio={servicio} />
           ))}
         </div>
-
-        {/* Slot para agregar más servicios */}
-        {/* AGREGAR MÁS SERVICIOS en src/constants/servicios.ts */}
       </div>
     </div>
   );

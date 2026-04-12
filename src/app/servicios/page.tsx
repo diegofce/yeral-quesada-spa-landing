@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
-import Breadcrumb from "@/components/layout/Breadcrumb";
-import ServiciosTabs from "@/components/servicios/ServiciosTabs";
-import { SAAS_BOOKING_URL, NOMBRE_NEGOCIO, SITE_URL } from "@/constants/config";
+import Breadcrumb from '@/components/layout/Breadcrumb';
+import ServiciosTabs from '@/components/servicios/ServiciosTabs';
+import { NOMBRE_NEGOCIO, SAAS_BOOKING_URL, SITE_URL } from '@/constants/config';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Servicios de Estética Facial y Corporal",
+  title: 'Servicios de Estética Facial y Corporal',
   description: `Descubre todos los servicios de ${NOMBRE_NEGOCIO}: limpieza facial profunda, porcelanizado, tratamiento postoperatorio, reductor corporal y más. Reserva tu cita.`,
   alternates: { canonical: `${SITE_URL}/servicios` },
   openGraph: {
     title: `Servicios | ${NOMBRE_NEGOCIO}`,
-    description: "Tratamientos faciales y corporales profesionales. Reserva tu cita hoy.",
+    description:
+      'Tratamientos faciales y corporales profesionales. Reserva tu cita hoy.',
     url: `${SITE_URL}/servicios`,
   },
 };
@@ -25,19 +26,18 @@ export default function PaginaServicios() {
         className="relative flex min-h-[40vh] items-end overflow-hidden bg-gradient-to-br from-azul-rey to-azul-oscuro pb-12 pt-24"
         aria-labelledby="servicios-hero-titulo"
       >
-        {/* REEMPLAZAR: imagen banner de servicios */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "32px 32px",
+              'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '32px 32px',
           }}
           aria-hidden="true"
         />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <Breadcrumb
-            items={[{ etiqueta: "Servicios" }]}
+            items={[{ etiqueta: 'Servicios' }]}
             className="text-white/60 [&_a]:text-white/60 [&_a:hover]:text-white mb-4"
           />
           <h1
@@ -47,7 +47,8 @@ export default function PaginaServicios() {
             Nuestros Servicios
           </h1>
           <p className="mt-3 max-w-lg text-lg text-white/75">
-            Tratamientos faciales y corporales diseñados para revelar tu mejor versión.
+            Tratamientos faciales y corporales diseñados para revelar tu mejor
+            versión.
           </p>
         </div>
       </section>

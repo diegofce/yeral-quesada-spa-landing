@@ -17,18 +17,18 @@ export const WHATSAPP_NUMBER =
 export const WHATSAPP_DEFAULT_TEXT =
   'Hola, quiero información sobre los servicios de Estética Integral.';
 
-/** URL base directa de WhatsApp */
-export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+/** URL de WhatsApp para botones del sitio (tracking marketing) */
+export const WHATSAPP_URL =
+  process.env.NEXT_PUBLIC_WHATSAPP_URL ||
+  'https://api.whatsapp.com/send?phone=573113634058&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleARIuY5leHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp-BNkRYwAL7-HCkaMiDbXceX1J3MNb9sVyB8voxZ8KBzxkv7kkcHwkbw5D2s_aem_8CyzZ0cB7j1_BplHpqUYmw';
 
 /** Construye un enlace de WhatsApp con mensaje opcional */
 export function crearWhatsAppUrl(
   mensaje: string = WHATSAPP_DEFAULT_TEXT,
 ): string {
-  return `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(mensaje)}`;
+  const separador = WHATSAPP_URL.includes('?') ? '&' : '?';
+  return `${WHATSAPP_URL}${separador}text=${encodeURIComponent(mensaje)}`;
 }
-
-/** URL de WhatsApp con mensaje por defecto */
-export const WHATSAPP_URL = crearWhatsAppUrl();
 
 /** Redes sociales */
 export const INSTAGRAM_URL =
@@ -50,6 +50,20 @@ export const SITE_URL =
 /** Endpoint HTTP para formulario de contacto (SaaS o backend externo) */
 export const CONTACT_FORM_ENDPOINT =
   process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || '';
+
+/**
+ * Estrategia del formulario de contacto:
+ * - whatsapp: prioriza redirección a WhatsApp
+ * - endpoint: intenta enviar al endpoint HTTP configurado
+ */
+export const CONTACT_FORM_MODE =
+  process.env.NEXT_PUBLIC_CONTACT_FORM_MODE === 'endpoint'
+    ? 'endpoint'
+    : 'whatsapp';
+
+/** Fecha estable para metadata/sitemap (evita publicar "hoy" siempre) */
+export const SITE_LAST_MODIFIED =
+  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || '2026-04-12';
 
 /** Nombre del negocio */
 export const NOMBRE_NEGOCIO = 'Estética Integral Yeral Quesada';

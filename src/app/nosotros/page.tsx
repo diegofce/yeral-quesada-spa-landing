@@ -39,9 +39,14 @@ const VALORES = [
   },
 ] as const;
 
+const CERTIFICACIONES = [
+  'Formación en estética facial y corporal integral',
+  'Protocolos de manejo postoperatorio y drenaje linfático',
+  'Actualización continua en aparatología estética no invasiva',
+] as const;
+
 /**
  * Página "Sobre Nosotros".
- * COMPLETAR: historia del negocio, certificaciones, foto profesional.
  */
 export default function PaginaNosotros() {
   return (
@@ -96,27 +101,25 @@ export default function PaginaNosotros() {
               </h2>
               <div className="mb-6 h-0.5 w-16 bg-dorado" aria-hidden="true" />
 
-              {/* COMPLETAR: historia y misión del negocio */}
               <div className="space-y-4 text-base leading-relaxed text-gris">
                 <p>
-                  Yeral Quesada es una apasionada de la estética y el bienestar,
-                  con una sólida formación en técnicas de estética facial y
-                  corporal. Su vocación nació del deseo de ayudar a las personas
-                  a sentirse bien en su propia piel.
+                  Yeral Quesada es especialista en estética integral con enfoque
+                  humano, técnico y personalizado. Su trabajo nace de una
+                  convicción clara: cuando una mujer se siente bien con su piel,
+                  también fortalece su seguridad y bienestar.
                 </p>
                 <p>
-                  {/* COMPLETAR: historia y misión del negocio */}
                   Fundó{' '}
                   <strong className="text-carbon">{NOMBRE_NEGOCIO}</strong> con
-                  la misión de ofrecer tratamientos profesionales de alta
-                  calidad en un ambiente cálido y personalizado, donde cada
-                  clienta se sienta única y especial.
+                  la misión de brindar tratamientos faciales y corporales de
+                  alto nivel en un entorno cálido, elegante y de confianza,
+                  donde cada clienta reciba una valoración real de su necesidad.
                 </p>
                 <p>
-                  {/* COMPLETAR: logros, años de experiencia, número de clientes */}
-                  Con experiencia y dedicación, combina técnicas avanzadas con
-                  productos certificados para garantizar resultados visibles y
-                  seguros.
+                  Con más de 8 años de experiencia, atención a cientos de
+                  clientas y actualización profesional constante, combina
+                  técnicas manuales, aparatología y productos certificados para
+                  lograr resultados visibles y seguros.
                 </p>
               </div>
             </div>
@@ -235,12 +238,17 @@ export default function PaginaNosotros() {
             titulo="Certificaciones y Formación"
             id="certificaciones-titulo"
           />
-          {/* AGREGAR: certificaciones y formación profesional */}
-          <div className="rounded-xl border border-dashed border-dorado/40 bg-dorado/5 p-8 text-center">
-            <p className="text-sm text-gris">
-              {/* AGREGAR: certificaciones y formación profesional de Yeral Quesada */}
-              Aquí se mostrarán las certificaciones y formación profesional.
-            </p>
+          <div className="rounded-xl border border-dorado/30 bg-white p-8">
+            <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {CERTIFICACIONES.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-lg border border-borde bg-fondo px-4 py-3 text-sm text-gris"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

@@ -1,8 +1,12 @@
 import heroImage from '@/assets/images/foto_prom.jpeg';
-import { NOMBRE_NEGOCIO, SAAS_BOOKING_URL, SLOGAN } from '@/constants/config';
+import {
+  NOMBRE_NEGOCIO,
+  SAAS_BOOKING_URL,
+  SLOGAN,
+  WHATSAPP_URL,
+} from '@/constants/config';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 /**
  * Hero principal con estética lujosa y femenina.
@@ -100,13 +104,15 @@ export default function HeroSection() {
                   RESERVAR CITA
                 </a>
 
-                <Link
-                  href="/servicios"
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3 text-sm font-semibold tracking-[0.05em] text-white transition hover:bg-white/10 md:px-8 md:py-4 md:text-base"
                 >
-                  Ver Servicios
+                  Escribir por WhatsApp
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                </a>
               </div>
             </div>
 

@@ -5,9 +5,9 @@ import masajeImg from '@/assets/images/masajes_.jpeg';
 import corporalImg from '@/assets/images/remodelacion_corporal.jpeg';
 import facialImg from '@/assets/images/tratamiento_facial_2.jpeg';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { WHATSAPP_URL } from '@/constants/config';
 import { ArrowRight, ZoomIn } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
-import Link from 'next/link';
 
 /**
  * Vista previa de galería con estilo masonry.
@@ -38,7 +38,7 @@ export default function GaleriaPreview() {
           id="galeria-titulo"
           title="Galería de Resultados"
           subtitle="Nuestro trabajo"
-          description="Muestra visual de resultados y espacios. Luego podrás reemplazar cada imagen manualmente."
+          description="Una selección de resultados y espacios reales de atención en Estética Integral."
         />
 
         <div className="columns-2 gap-4 lg:columns-3">
@@ -70,13 +70,15 @@ export default function GaleriaPreview() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link
-            href="/galeria"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-base font-semibold text-azul-rey transition-colors hover:text-azul-medio"
           >
-            Ver Galería Completa
+            Escribir por WhatsApp
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

@@ -186,12 +186,12 @@ export default function PaginaContacto() {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <a
-                    href={GOOGLE_MAPS_SHARE_URL}
+                    href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-[0.06em] text-azul-rey transition hover:bg-azul-rey hover:text-white"
                   >
-                    Ver en Google Maps
+                    Escribir por WhatsApp
                   </a>
                   <a
                     href={WHATSAPP_URL}
@@ -202,6 +202,18 @@ export default function PaginaContacto() {
                     WhatsApp: +{WHATSAPP_NUMBER}
                   </a>
                 </div>
+                <p className="mt-3 text-xs text-gris">
+                  Ubicación directa en{' '}
+                  <a
+                    href={GOOGLE_MAPS_SHARE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-azul-rey underline decoration-dorado/70 underline-offset-2"
+                  >
+                    Google Maps
+                  </a>
+                  .
+                </p>
               </div>
             </div>
           </div>

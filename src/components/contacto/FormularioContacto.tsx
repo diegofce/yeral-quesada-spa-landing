@@ -1,13 +1,17 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Send, CheckCircle } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { TODOS_LOS_SERVICIOS } from "@/constants/servicios";
-import { CONTACT_FORM_ENDPOINT, crearWhatsAppUrl } from "@/constants/config";
+import {
+  CONTACT_FORM_ENDPOINT,
+  CONTACT_FORM_MODE,
+  crearWhatsAppUrl,
+} from '@/constants/config';
+import { TODOS_LOS_SERVICIOS } from '@/constants/servicios';
+import { cn } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckCircle, Send } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 /**
  * Formulario de contacto con validación Zod y React Hook Form.
@@ -18,22 +22,22 @@ import { CONTACT_FORM_ENDPOINT, crearWhatsAppUrl } from "@/constants/config";
 const esquemaContacto = z.object({
   nombre: z
     .string()
-    .min(2, "El nombre debe tener al menos 2 caracteres")
-    .max(100, "El nombre es demasiado largo"),
+    .min(2, 'El nombre debe tener al menos 2 caracteres')
+    .max(100, 'El nombre es demasiado largo'),
   telefono: z
     .string()
-    .min(7, "Ingresa un número de teléfono válido")
-    .max(15, "El número es demasiado largo")
-    .regex(/^[0-9+\s-]+$/, "Solo se permiten números, espacios y guiones"),
+    .min(7, 'Ingresa un número de teléfono válido')
+    .max(15, 'El número es demasiado largo')
+    .regex(/^[0-9+\s-]+$/, 'Solo se permiten números, espacios y guiones'),
   email: z
     .string()
-    .email("Ingresa un correo electrónico válido")
+    .email('Ingresa un correo electrónico válido')
     .optional()
-    .or(z.literal("")),
+    .or(z.literal('')),
   servicioInteres: z.string().optional(),
   mensaje: z
     .string()
-    .max(500, "El mensaje no puede superar los 500 caracteres")
+    .max(500, 'El mensaje no puede superar los 500 caracteres')
     .optional(),
 });
 
@@ -55,12 +59,13 @@ function Campo({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label
-        htmlFor={htmlFor}
-        className="text-sm font-medium text-carbon"
-      >
+      <label htmlFor={htmlFor} className="text-sm font-medium text-carbon">
         {label}
-        {required && <span className="ml-1 text-red-500" aria-hidden="true">*</span>}
+        {required && (
+          <span className="ml-1 text-red-500" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       {children}
       {error && (
@@ -74,12 +79,14 @@ function Campo({
 
 /** Clases base para inputs */
 const claseInput =
-  "rounded-lg border border-borde bg-white px-4 py-2.5 text-sm text-carbon placeholder:text-gris/60 transition-colors focus:border-azul-rey focus:outline-none focus:ring-1 focus:ring-azul-rey disabled:opacity-50";
+  'rounded-lg border border-borde bg-white px-4 py-2.5 text-sm text-carbon placeholder:text-gris/60 transition-colors focus:border-azul-rey focus:outline-none focus:ring-1 focus:ring-azul-rey disabled:opacity-50';
 
 export default function FormularioContacto() {
   const [enviado, setEnviado] = useState(false);
   const [mensajeError, setMensajeError] = useState<string | null>(null);
-  const [canalEnvio, setCanalEnvio] = useState<"formulario" | "whatsapp">("formulario");
+  const [canalEnvio, setCanalEnvio] = useState<'formulario' | 'whatsapp'>(
+    'formulario',
+  );
 
   const {
     register,
@@ -94,13 +101,15 @@ export default function FormularioContacto() {
     setMensajeError(null);
 
     try {
-      if (!CONTACT_FORM_ENDPOINT) {
+      const usarWhatsApp = CONTACT_FORM_MODE === 'whatsapp';
+
+      if (usarWhatsApp || !CONTACT_FORM_ENDPOINT) {
         const servicioSeleccionado = TODOS_LOS_SERVICIOS.find(
           (servicio) => servicio.id === datos.servicioInteres,
         );
 
         const mensajeWhatsApp = [
-          "Hola, quiero información sobre sus servicios.",
+          'Hola, quiero información sobre sus servicios.',
           `Nombre: ${datos.nombre}`,
           `Teléfono: ${datos.telefono}`,
           datos.email ? `Correo: ${datos.email}` : null,
@@ -110,39 +119,39 @@ export default function FormularioContacto() {
           datos.mensaje ? `Mensaje: ${datos.mensaje}` : null,
         ]
           .filter(Boolean)
-          .join("\n");
+          .join('\n');
 
         window.open(
           crearWhatsAppUrl(mensajeWhatsApp),
-          "_blank",
-          "noopener,noreferrer",
+          '_blank',
+          'noopener,noreferrer',
         );
-        setCanalEnvio("whatsapp");
+        setCanalEnvio('whatsapp');
         setEnviado(true);
         reset();
         return;
       }
 
       const respuesta = await fetch(CONTACT_FORM_ENDPOINT, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(datos),
       });
 
       if (!respuesta.ok) {
-        throw new Error("No fue posible enviar el formulario en este momento.");
+        throw new Error('No fue posible enviar el formulario en este momento.');
       }
 
       setEnviado(true);
-      setCanalEnvio("formulario");
+      setCanalEnvio('formulario');
       reset();
     } catch (error) {
       const mensaje =
         error instanceof Error
           ? error.message
-          : "Ocurrió un error al enviar el formulario.";
+          : 'Ocurrió un error al enviar el formulario.';
       setMensajeError(mensaje);
     }
   };
@@ -155,9 +164,9 @@ export default function FormularioContacto() {
           ¡Mensaje enviado!
         </h3>
         <p className="text-sm text-gris">
-          {canalEnvio === "whatsapp"
-            ? "Te redirigimos a WhatsApp para completar el envío de tu solicitud."
-            : "Gracias por contactarnos. Te responderemos lo antes posible."}
+          {canalEnvio === 'whatsapp'
+            ? 'Te redirigimos a WhatsApp para completar el envío de tu solicitud.'
+            : 'Gracias por contactarnos. Te responderemos lo antes posible.'}
         </p>
       </div>
     );
@@ -174,38 +183,52 @@ export default function FormularioContacto() {
       </h2>
 
       {/* Nombre */}
-      <Campo label="Nombre completo" error={errors.nombre?.message} required htmlFor="nombre">
+      <Campo
+        label="Nombre completo"
+        error={errors.nombre?.message}
+        required
+        htmlFor="nombre"
+      >
         <input
           id="nombre"
           type="text"
           placeholder="Tu nombre completo"
           autoComplete="name"
-          className={cn(claseInput, errors.nombre && "border-red-400")}
-          {...register("nombre")}
+          className={cn(claseInput, errors.nombre && 'border-red-400')}
+          {...register('nombre')}
         />
       </Campo>
 
       {/* Teléfono */}
-      <Campo label="Teléfono" error={errors.telefono?.message} required htmlFor="telefono">
+      <Campo
+        label="Teléfono"
+        error={errors.telefono?.message}
+        required
+        htmlFor="telefono"
+      >
         <input
           id="telefono"
           type="tel"
           placeholder="300 123 4567"
           autoComplete="tel"
-          className={cn(claseInput, errors.telefono && "border-red-400")}
-          {...register("telefono")}
+          className={cn(claseInput, errors.telefono && 'border-red-400')}
+          {...register('telefono')}
         />
       </Campo>
 
       {/* Email */}
-      <Campo label="Correo electrónico" error={errors.email?.message} htmlFor="email">
+      <Campo
+        label="Correo electrónico"
+        error={errors.email?.message}
+        htmlFor="email"
+      >
         <input
           id="email"
           type="email"
           placeholder="tu@email.com"
           autoComplete="email"
-          className={cn(claseInput, errors.email && "border-red-400")}
-          {...register("email")}
+          className={cn(claseInput, errors.email && 'border-red-400')}
+          {...register('email')}
         />
       </Campo>
 
@@ -213,8 +236,8 @@ export default function FormularioContacto() {
       <Campo label="Servicio de interés" htmlFor="servicioInteres">
         <select
           id="servicioInteres"
-          className={cn(claseInput, "cursor-pointer")}
-          {...register("servicioInteres")}
+          className={cn(claseInput, 'cursor-pointer')}
+          {...register('servicioInteres')}
         >
           <option value="">Selecciona un servicio (opcional)</option>
           {TODOS_LOS_SERVICIOS.map((s) => (
@@ -231,8 +254,12 @@ export default function FormularioContacto() {
           id="mensaje"
           rows={4}
           placeholder="¿En qué podemos ayudarte?"
-          className={cn(claseInput, "resize-none", errors.mensaje && "border-red-400")}
-          {...register("mensaje")}
+          className={cn(
+            claseInput,
+            'resize-none',
+            errors.mensaje && 'border-red-400',
+          )}
+          {...register('mensaje')}
         />
       </Campo>
 
@@ -244,7 +271,10 @@ export default function FormularioContacto() {
       >
         {isSubmitting ? (
           <>
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" aria-hidden="true" />
+            <span
+              className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"
+              aria-hidden="true"
+            />
             Enviando...
           </>
         ) : (
@@ -262,8 +292,8 @@ export default function FormularioContacto() {
       )}
 
       <p className="text-xs text-gris">
-        <span className="text-red-500">*</span> Campos obligatorios.
-        Tu información es confidencial y no será compartida.
+        <span className="text-red-500">*</span> Campos obligatorios. Tu
+        información es confidencial y no será compartida.
       </p>
     </form>
   );

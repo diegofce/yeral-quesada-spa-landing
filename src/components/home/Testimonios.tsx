@@ -1,9 +1,8 @@
-import { Star } from "lucide-react";
-import SectionTitle from "@/components/ui/SectionTitle";
+import SectionTitle from '@/components/ui/SectionTitle';
+import { Star } from 'lucide-react';
 
 /**
  * Sección de testimonios.
- * COMPLETAR: agregar testimonios reales de clientes.
  */
 interface Testimonio {
   nombre: string;
@@ -13,19 +12,22 @@ interface Testimonio {
 
 const TESTIMONIOS: Testimonio[] = [
   {
-    nombre: "Cliente 1",
-    comentario: "Experiencia maravillosa, atención cálida y resultados visibles desde la primera sesión.",
-    servicio: "Limpieza Facial Profunda",
+    nombre: 'María G.',
+    comentario:
+      'Desde la primera sesión sentí la diferencia. Me encantó la atención personalizada y lo cuidadoso de cada paso del tratamiento.',
+    servicio: 'Limpieza Facial Profunda',
   },
   {
-    nombre: "Cliente 2",
-    comentario: "Un espacio impecable y profesional. Me sentí acompañada en todo momento.",
-    servicio: "Porcelanizado Facial",
+    nombre: 'Laura C.',
+    comentario:
+      'El spa es impecable, transmite confianza y profesionalismo. Me explicaron todo con claridad y salí feliz con el resultado.',
+    servicio: 'Porcelanizado Facial',
   },
   {
-    nombre: "Cliente 3",
-    comentario: "Excelente manejo postoperatorio, noté alivio y evolución rápida en mi proceso.",
-    servicio: "Postoperatorio Corporal",
+    nombre: 'Andrea R.',
+    comentario:
+      'En mi postoperatorio me sentí acompañada en todo momento. Noté mejoría, menos inflamación y un proceso mucho más cómodo.',
+    servicio: 'Postoperatorio Corporal',
   },
 ];
 
@@ -33,7 +35,11 @@ function Estrellas() {
   return (
     <div className="mt-4 flex gap-1" aria-label="Calificación 5 de 5">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-dorado text-dorado" aria-hidden="true" />
+        <Star
+          key={i}
+          className="h-4 w-4 fill-dorado text-dorado"
+          aria-hidden="true"
+        />
       ))}
     </div>
   );
@@ -41,7 +47,11 @@ function Estrellas() {
 
 export default function Testimonios() {
   return (
-    <section className="section-padding" style={{ background: "var(--gradient-suave)" }} aria-labelledby="testimonios-titulo">
+    <section
+      className="section-padding"
+      style={{ background: 'var(--gradient-suave)' }}
+      aria-labelledby="testimonios-titulo"
+    >
       <div className="container-custom">
         <SectionTitle
           id="testimonios-titulo"
@@ -50,16 +60,35 @@ export default function Testimonios() {
           description="Opiniones que reflejan confianza, resultados y atención personalizada."
         />
 
+        <div className="mx-auto mb-10 w-full max-w-3xl overflow-hidden rounded-2xl border border-dorado/25 bg-white shadow-sm">
+          <video controls preload="metadata" className="h-full w-full">
+            <source src="/testimonio.mp4" type="video/mp4" />
+            Tu navegador no soporta video HTML5.
+          </video>
+        </div>
+
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {TESTIMONIOS.map((testimonio) => (
-            <article key={testimonio.nombre} className="card-luxury relative p-6">
-              <span className="absolute left-5 top-2 font-display text-6xl text-dorado/30" aria-hidden="true">
+            <article
+              key={testimonio.nombre}
+              className="card-luxury relative p-6"
+            >
+              <span
+                className="absolute left-5 top-2 font-display text-6xl text-dorado/30"
+                aria-hidden="true"
+              >
                 &quot;
               </span>
 
-              <div className="mb-4 h-[2px] w-8 rounded" style={{ background: "var(--gradient-dorado)" }} aria-hidden="true" />
+              <div
+                className="mb-4 h-[2px] w-8 rounded"
+                style={{ background: 'var(--gradient-dorado)' }}
+                aria-hidden="true"
+              />
 
-              <p className="mt-4 text-sm italic leading-relaxed text-texto-suave">{testimonio.comentario}</p>
+              <p className="mt-4 text-sm italic leading-relaxed text-texto-suave">
+                {testimonio.comentario}
+              </p>
 
               <Estrellas />
 
@@ -68,8 +97,12 @@ export default function Testimonios() {
                   {testimonio.nombre.charAt(0)}
                 </span>
                 <div>
-                  <p className="font-semibold text-azul-rey">{testimonio.nombre}</p>
-                  <p className="text-xs text-texto-suave">{testimonio.servicio}</p>
+                  <p className="font-semibold text-azul-rey">
+                    {testimonio.nombre}
+                  </p>
+                  <p className="text-xs text-texto-suave">
+                    {testimonio.servicio}
+                  </p>
                 </div>
               </footer>
             </article>

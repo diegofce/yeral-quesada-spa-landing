@@ -1,8 +1,7 @@
 import fotoYeral from '@/assets/images/foto_prom_2.jpeg';
-import { NOMBRE_NEGOCIO } from '@/constants/config';
+import { NOMBRE_NEGOCIO, WHATSAPP_URL } from '@/constants/config';
 import { ArrowRight, Check } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 /**
  * Vista previa sobre nosotros.
@@ -66,13 +65,15 @@ export default function SobreNosotrosPreview() {
               ))}
             </ul>
 
-            <Link
-              href="/nosotros"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-azul mt-7 inline-flex items-center gap-2 text-sm"
             >
-              Conocer más
+              Escribir por WhatsApp
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

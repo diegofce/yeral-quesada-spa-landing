@@ -1,28 +1,31 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 /**
  * Configuración principal de Next.js
  * Incluye headers de seguridad y optimización de imágenes
  */
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: __dirname,
+  },
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: '/(.*)',
         headers: [
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
           },
           {
-            key: "Content-Security-Policy",
+            key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
               // JSON-LD usa scripts inline; se conserva solo unsafe-inline y se elimina unsafe-eval.
@@ -32,11 +35,11 @@ const nextConfig: NextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob:",
               "connect-src 'self'",
-              "frame-src https://www.google.com",
+              'frame-src https://www.google.com',
               "base-uri 'self'",
               "form-action 'self'",
               "frame-ancestors 'none'",
-            ].join("; "),
+            ].join('; '),
           },
         ],
       },
