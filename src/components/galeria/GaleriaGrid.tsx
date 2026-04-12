@@ -171,10 +171,12 @@ export default function GaleriaGrid() {
       <div className="columns-2 gap-4 md:columns-3">
         {fotosFiltradas.map((foto, indice) => (
           <button
+            type="button"
             key={foto.id}
             className="group relative mb-4 w-full overflow-hidden rounded-xl break-inside-avoid focus:outline-none focus-visible:ring-2 focus-visible:ring-azul-rey"
             onClick={() => abrirFoto(indice)}
             aria-label={`Ver foto: ${foto.alt}`}
+            title={`Ver imagen completa: ${foto.alt}`}
           >
             <div className={`${foto.ratio} relative w-full`}>
               <Image
@@ -187,11 +189,11 @@ export default function GaleriaGrid() {
             </div>
 
             {/* Overlay hover */}
-            <div className="absolute inset-0 flex items-center justify-center bg-azul-rey/0 transition-all duration-300 group-hover:bg-azul-rey/50">
-              <Expand
-                className="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                aria-hidden="true"
-              />
+            <div className="absolute inset-0 flex items-end justify-center bg-azul-rey/0 p-4 transition-all duration-300 group-hover:bg-azul-rey/45">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/35 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100">
+                <Expand className="h-4 w-4" aria-hidden="true" />
+                Ver imagen completa
+              </span>
             </div>
           </button>
         ))}

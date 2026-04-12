@@ -1,9 +1,9 @@
 'use client';
 
+import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 /** Una foto del carrusel */
 interface FotoCarrusel {
@@ -103,11 +103,10 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
         </div>
 
         <div
-          className="relative h-[320px] w-full overflow-hidden sm:h-[420px] lg:h-[540px]"
+          className="relative h-[240px] w-full overflow-hidden sm:h-[300px] md:h-[360px] lg:h-[430px]"
           style={{ borderRadius: '1.5rem' }}
           onMouseEnter={pausar}
           onMouseLeave={() => setPausado(false)}
-          onTouchStart={pausar}
           role="region"
           aria-label="Galería de fotos del spa"
         >
@@ -141,34 +140,37 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
           />
 
           <button
+            type="button"
             onClick={() => {
               anterior();
               pausar();
             }}
-            className="absolute left-4 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 md:flex"
-            style={{ background: 'rgba(0,0,0,0.30)' }}
+            className="absolute left-3 top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 sm:left-4 sm:p-3"
+            style={{ background: 'rgba(0,0,0,0.34)' }}
             aria-label="Foto anterior"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
           <button
+            type="button"
             onClick={() => {
               siguiente();
               pausar();
             }}
-            className="absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 md:flex"
-            style={{ background: 'rgba(0,0,0,0.30)' }}
+            className="absolute right-3 top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 sm:right-4 sm:p-3"
+            style={{ background: 'rgba(0,0,0,0.34)' }}
             aria-label="Foto siguiente"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
-          <div className="absolute bottom-4 left-0 right-0 z-10 flex items-center justify-center gap-3">
+          <div className="absolute bottom-3 left-0 right-0 z-20 flex items-center justify-center gap-2 px-4 sm:bottom-4 sm:gap-3">
             <button
+              type="button"
               onClick={togglePausa}
               className="flex items-center justify-center rounded-full p-1.5 text-white backdrop-blur-sm transition hover:scale-110"
-              style={{ background: 'rgba(0,0,0,0.35)' }}
+              style={{ background: 'rgba(0,0,0,0.40)' }}
               aria-label={pausado ? 'Reanudar' : 'Pausar'}
             >
               {pausado ? (
@@ -180,6 +182,7 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
 
             {fotos.map((_, indice) => (
               <button
+                type="button"
                 key={indice}
                 onClick={() => {
                   setActivo(indice);
@@ -187,8 +190,8 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
                 }}
                 className="rounded-full transition-all duration-300"
                 style={{
-                  width: indice === activo ? '26px' : '8px',
-                  height: '8px',
+                  width: indice === activo ? '20px' : '7px',
+                  height: '7px',
                   background:
                     indice === activo
                       ? 'var(--color-dorado)'
@@ -201,7 +204,7 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
           </div>
 
           <div
-            className="absolute right-4 top-4 z-10 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm"
+            className="absolute right-3 top-3 z-20 rounded-full px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm sm:right-4 sm:top-4"
             style={{ background: 'rgba(26,58,107,0.55)' }}
             aria-live="polite"
           >

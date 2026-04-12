@@ -1,4 +1,5 @@
 import logoSpa from '@/assets/images/logoFinal.png';
+import spaImg from '@/assets/images/spa_.jpeg';
 import {
   AÑO_COPYRIGHT,
   DESARROLLADOR,
@@ -131,11 +132,26 @@ export default function Footer() {
               </li>
             </ul>
 
-            <div className="mt-5 rounded-xl border border-dorado/20 bg-white/5 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-dorado-claro">
+            <div className="relative mt-5 min-h-[170px] overflow-hidden rounded-xl border border-dorado/20 p-4">
+              <Image
+                src={spaImg}
+                alt="Spa Estética Integral"
+                fill
+                sizes="(max-width: 1024px) 100vw, 25vw"
+                className="object-cover object-center"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    'linear-gradient(135deg, rgba(10,31,78,0.82) 0%, rgba(26,58,107,0.68) 45%, rgba(10,31,78,0.84) 100%)',
+                }}
+                aria-hidden="true"
+              />
+              <p className="relative z-10 text-xs font-semibold uppercase tracking-[0.12em] text-dorado-claro">
                 Horarios
               </p>
-              <ul className="mt-2 space-y-1">
+              <ul className="relative z-10 mt-2 space-y-1">
                 {HORARIOS.map((h) => (
                   <li key={h.dias} className="text-xs text-white/75">
                     <span className="text-white/90">{h.dias}:</span> {h.horario}

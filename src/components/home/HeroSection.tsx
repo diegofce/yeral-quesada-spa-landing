@@ -51,10 +51,6 @@ export default function HeroSection() {
 
       <div className="container-custom relative z-10 flex min-h-[100svh] items-center py-28 pb-24 pt-28 md:py-32 lg:py-40">
         <div className="w-full max-w-[680px] md:max-w-[55%]">
-          <div className="inline-flex rounded-full border border-dorado/40 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-dorado-claro backdrop-blur-sm">
-            Estética Facial &amp; Corporal
-          </div>
-
           <div className="mt-6 space-y-8">
             <h1
               id="hero-titulo"
