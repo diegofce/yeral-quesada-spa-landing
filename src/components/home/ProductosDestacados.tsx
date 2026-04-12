@@ -3,6 +3,8 @@ import fomaxImg from '@/assets/images/fomax.jpeg';
 import pinkGlowImg from '@/assets/images/pinkglow_2.jpeg';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { crearWhatsAppUrl } from '@/constants/config';
+import { PRODUCTOS_DESTACADOS } from '@/constants/productos';
+import { formatCOP } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,32 +12,11 @@ import Link from 'next/link';
 /**
  * Vista previa de productos en home.
  */
-const PRODUCTOS_PLACEHOLDER = [
-  {
-    id: 'producto-1',
-    nombre: 'Producto Facial Premium',
-    descripcion: 'Fórmula profesional para complementar tu rutina de cuidado.',
-    precio: 'Consultar precio',
-    categoria: 'Facial',
-    src: ampollasImg,
-  },
-  {
-    id: 'producto-2',
-    nombre: 'Sérum Rejuvenecedor',
-    descripcion: 'Textura ligera para hidratación y luminosidad inmediata.',
-    precio: 'Consultar precio',
-    categoria: 'Skincare',
-    src: pinkGlowImg,
-  },
-  {
-    id: 'producto-3',
-    nombre: 'Crema Corporal Nutritiva',
-    descripcion: 'Nutrición profunda para una piel suave y uniforme.',
-    precio: 'Consultar precio',
-    categoria: 'Corporal',
-    src: fomaxImg,
-  },
-] as const;
+const IMAGENES_DESTACADAS = {
+  'producto-1': ampollasImg,
+  'producto-2': pinkGlowImg,
+  'producto-3': fomaxImg,
+} as const;
 
 export default function ProductosDestacados() {
   return (
@@ -48,15 +29,15 @@ export default function ProductosDestacados() {
           id="productos-titulo"
           title="Productos Destacados"
           subtitle="Selección exclusiva"
-          description="Espacio preparado para que agregues tus productos reales con imagen, precio y descripción."
+          description="Selección de productos profesionales que complementan nuestros tratamientos faciales y corporales."
         />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {PRODUCTOS_PLACEHOLDER.map((producto) => (
+          {PRODUCTOS_DESTACADOS.map((producto) => (
             <article key={producto.id} className="card-luxury p-5">
               <div className="relative aspect-square overflow-hidden rounded-2xl">
                 <Image
-                  src={producto.src}
+                  src={IMAGENES_DESTACADAS[producto.id as keyof typeof IMAGENES_DESTACADAS] ?? ampollasImg}
                   alt={`Imagen de ${producto.nombre}`}
                   fill
                   sizes="(max-width: 1024px) 50vw, 33vw"
@@ -65,7 +46,7 @@ export default function ProductosDestacados() {
               </div>
 
               <span className="mt-4 inline-flex rounded-full bg-dorado/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-azul-rey">
-                {producto.categoria}
+                {producto.badgeCategoria}
               </span>
 
               <h3 className="mt-3 font-display text-2xl text-azul-rey">
@@ -76,7 +57,7 @@ export default function ProductosDestacados() {
               </p>
 
               <p className="mt-4 font-display text-xl font-semibold text-azul-rey">
-                {producto.precio}
+                {formatCOP(producto.precio)}
               </p>
 
               <a

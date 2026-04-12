@@ -16,6 +16,10 @@ describe('FormularioContacto', () => {
   });
 
   test('muestra error si falta endpoint de envio', async () => {
+    const windowOpenSpy = vi
+      .spyOn(window, 'open')
+      .mockImplementation(() => null);
+
     render(<FormularioContacto />);
 
     fireEvent.change(screen.getByLabelText(/nombre completo/i), {
@@ -30,10 +34,13 @@ describe('FormularioContacto', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(
-          /formulario no configurado\. define NEXT_PUBLIC_CONTACT_FORM_ENDPOINT/i,
-        ),
+        screen.getByText(/te redirigimos a whatsapp para completar el env[ií]o/i),
       ).toBeInTheDocument();
     });
+
+    expect(windowOpenSpy).toHaveBeenCalledTimes(1);
+    expect(windowOpenSpy.mock.calls[0]?.[0]).toMatch(/^https:\/\/wa\.me\//);
+
+    windowOpenSpy.mockRestore();
   });
 });

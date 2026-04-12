@@ -7,7 +7,7 @@ import { Send, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { TODOS_LOS_SERVICIOS } from "@/constants/servicios";
-import { CONTACT_FORM_ENDPOINT } from "@/constants/config";
+import { CONTACT_FORM_ENDPOINT, crearWhatsAppUrl } from "@/constants/config";
 
 /**
  * Formulario de contacto con validación Zod y React Hook Form.
@@ -79,6 +79,7 @@ const claseInput =
 export default function FormularioContacto() {
   const [enviado, setEnviado] = useState(false);
   const [mensajeError, setMensajeError] = useState<string | null>(null);
+  const [canalEnvio, setCanalEnvio] = useState<"formulario" | "whatsapp">("formulario");
 
   const {
     register,
@@ -94,9 +95,32 @@ export default function FormularioContacto() {
 
     try {
       if (!CONTACT_FORM_ENDPOINT) {
-        throw new Error(
-          "Formulario no configurado. Define NEXT_PUBLIC_CONTACT_FORM_ENDPOINT en .env.local."
+        const servicioSeleccionado = TODOS_LOS_SERVICIOS.find(
+          (servicio) => servicio.id === datos.servicioInteres,
         );
+
+        const mensajeWhatsApp = [
+          "Hola, quiero información sobre sus servicios.",
+          `Nombre: ${datos.nombre}`,
+          `Teléfono: ${datos.telefono}`,
+          datos.email ? `Correo: ${datos.email}` : null,
+          servicioSeleccionado
+            ? `Servicio de interés: ${servicioSeleccionado.nombre}`
+            : null,
+          datos.mensaje ? `Mensaje: ${datos.mensaje}` : null,
+        ]
+          .filter(Boolean)
+          .join("\n");
+
+        window.open(
+          crearWhatsAppUrl(mensajeWhatsApp),
+          "_blank",
+          "noopener,noreferrer",
+        );
+        setCanalEnvio("whatsapp");
+        setEnviado(true);
+        reset();
+        return;
       }
 
       const respuesta = await fetch(CONTACT_FORM_ENDPOINT, {
@@ -112,6 +136,7 @@ export default function FormularioContacto() {
       }
 
       setEnviado(true);
+      setCanalEnvio("formulario");
       reset();
     } catch (error) {
       const mensaje =
@@ -130,7 +155,9 @@ export default function FormularioContacto() {
           ¡Mensaje enviado!
         </h3>
         <p className="text-sm text-gris">
-          Gracias por contactarnos. Te responderemos lo antes posible.
+          {canalEnvio === "whatsapp"
+            ? "Te redirigimos a WhatsApp para completar el envío de tu solicitud."
+            : "Gracias por contactarnos. Te responderemos lo antes posible."}
         </p>
       </div>
     );
