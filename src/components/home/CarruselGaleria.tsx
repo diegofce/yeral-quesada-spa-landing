@@ -25,7 +25,6 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
   const [activo, setActivo] = useState(0);
   const [pausado, setPausado] = useState(false);
   const intervaloRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const reanudarRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const siguiente = useCallback(() => {
     setActivo((previo) => (previo + 1) % fotos.length);
@@ -35,15 +34,12 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
     setActivo((previo) => (previo - 1 + fotos.length) % fotos.length);
   }, [fotos.length]);
 
-  const pausar = useCallback(() => {
-    setPausado(true);
-    if (reanudarRef.current) clearTimeout(reanudarRef.current);
-    reanudarRef.current = setTimeout(() => setPausado(false), 3500);
+  const irAIndice = useCallback((indice: number) => {
+    setActivo(indice);
   }, []);
 
   const togglePausa = () => {
     setPausado((previo) => !previo);
-    if (reanudarRef.current) clearTimeout(reanudarRef.current);
   };
 
   useEffect(() => {
@@ -62,7 +58,6 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
   useEffect(() => {
     return () => {
       if (intervaloRef.current) clearInterval(intervaloRef.current);
-      if (reanudarRef.current) clearTimeout(reanudarRef.current);
     };
   }, []);
 
@@ -106,8 +101,6 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
         <div
           className="relative h-[240px] w-full overflow-hidden sm:h-[300px] md:h-[360px] lg:h-[430px]"
           style={{ borderRadius: '1.5rem' }}
-          onMouseEnter={pausar}
-          onMouseLeave={() => setPausado(false)}
           role="region"
           aria-label="Galería de fotos del spa"
         >
@@ -144,9 +137,8 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
             type="button"
             onClick={() => {
               anterior();
-              pausar();
             }}
-            className="absolute left-3 top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 sm:left-4 sm:p-3"
+            className="absolute left-3 top-1/2 z-20 flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 sm:left-4 sm:p-3"
             style={{ background: 'rgba(0,0,0,0.34)' }}
             aria-label="Foto anterior"
           >
@@ -157,9 +149,8 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
             type="button"
             onClick={() => {
               siguiente();
-              pausar();
             }}
-            className="absolute right-3 top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 sm:right-4 sm:p-3"
+            className="absolute right-3 top-1/2 z-20 flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 sm:right-4 sm:p-3"
             style={{ background: 'rgba(0,0,0,0.34)' }}
             aria-label="Foto siguiente"
           >
@@ -170,7 +161,7 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
             <button
               type="button"
               onClick={togglePausa}
-              className="flex items-center justify-center rounded-full p-1.5 text-white backdrop-blur-sm transition hover:scale-110"
+              className="flex cursor-pointer items-center justify-center rounded-full p-1.5 text-white backdrop-blur-sm transition hover:scale-110"
               style={{ background: 'rgba(0,0,0,0.40)' }}
               aria-label={pausado ? 'Reanudar' : 'Pausar'}
             >
@@ -186,10 +177,9 @@ export default function CarruselGaleria({ fotos }: PropsCarrusel) {
                 type="button"
                 key={indice}
                 onClick={() => {
-                  setActivo(indice);
-                  pausar();
+                  irAIndice(indice);
                 }}
-                className="rounded-full transition-all duration-300"
+                className="cursor-pointer rounded-full transition-all duration-300"
                 style={{
                   width: indice === activo ? '20px' : '7px',
                   height: '7px',
