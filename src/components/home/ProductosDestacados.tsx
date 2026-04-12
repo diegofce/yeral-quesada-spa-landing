@@ -2,7 +2,7 @@ import ampollasImg from '@/assets/images/ampollas.jpeg';
 import fomaxImg from '@/assets/images/fomax.jpeg';
 import pinkGlowImg from '@/assets/images/pinkglow_2.jpeg';
 import SectionTitle from '@/components/ui/SectionTitle';
-import { WHATSAPP_URL } from '@/constants/config';
+import { crearWhatsAppUrl } from '@/constants/config';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -80,7 +80,9 @@ export default function ProductosDestacados() {
               </p>
 
               <a
-                href={`${WHATSAPP_URL}?text=Hola! Quiero información del producto: ${encodeURIComponent(producto.nombre)}`}
+                href={crearWhatsAppUrl(
+                  `Hola, quiero información del producto: ${producto.nombre}`,
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex rounded-full border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-[0.05em] text-azul-rey transition hover:bg-azul-rey hover:text-white"

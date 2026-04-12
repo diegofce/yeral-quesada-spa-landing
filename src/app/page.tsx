@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
-import HeroSection from "@/components/home/HeroSection";
-import TrustBar from "@/components/home/TrustBar";
-import ServiciosDestacados from "@/components/home/ServiciosDestacados";
-import CtaReserva from "@/components/home/CtaReserva";
-import ProductosDestacados from "@/components/home/ProductosDestacados";
-import GaleriaPreview from "@/components/home/GaleriaPreview";
-import Testimonios from "@/components/home/Testimonios";
-import SobreNosotrosPreview from "@/components/home/SobreNosotrosPreview";
-import { NOMBRE_NEGOCIO, SLOGAN, SITE_URL } from "@/constants/config";
+import CtaReserva from '@/components/home/CtaReserva';
+import GaleriaPreview from '@/components/home/GaleriaPreview';
+import HeroSection from '@/components/home/HeroSection';
+import ProductosDestacados from '@/components/home/ProductosDestacados';
+import ServiciosDestacados from '@/components/home/ServiciosDestacados';
+import SobreNosotrosPreview from '@/components/home/SobreNosotrosPreview';
+import Testimonios from '@/components/home/Testimonios';
+import TrustBar from '@/components/home/TrustBar';
+import UbicacionSection from '@/components/home/UbicacionSection';
+import { NOMBRE_NEGOCIO, SITE_URL, SLOGAN } from '@/constants/config';
+import type { Metadata } from 'next';
 
 /**
  * Metadata específica de la página de inicio.
@@ -39,24 +40,26 @@ export default function PaginaInicio() {
       {/* 2. Franja de confianza */}
       <TrustBar />
 
-      {/* 3. Servicios destacados */}
+      {/* 3. Ubicación y mapa */}
+      <UbicacionSection />
+
+      {/* 4. Servicios destacados */}
       <ServiciosDestacados />
 
-      {/* 4. CTA de reserva */}
+      {/* 5. CTA de reserva */}
       <CtaReserva />
 
-      {/* 5. Productos destacados */}
+      {/* 6. Productos destacados */}
       <ProductosDestacados />
 
-      {/* 6. Preview de galería */}
+      {/* 7. Preview de galería */}
       <GaleriaPreview />
 
-      {/* 7. Testimonios */}
+      {/* 8. Testimonios */}
       <Testimonios />
 
-      {/* 8. Preview sobre nosotros */}
+      {/* 9. Preview sobre nosotros */}
       <SobreNosotrosPreview />
     </>
   );
 }
-

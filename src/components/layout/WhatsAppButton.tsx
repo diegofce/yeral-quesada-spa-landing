@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { MessageCircle } from "lucide-react";
-import { WHATSAPP_NUMBER } from "@/constants/config";
+import { WHATSAPP_URL } from '@/constants/config';
+import { MessageCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 /**
  * Botón flotante de WhatsApp con control de teclado virtual.
@@ -17,12 +17,12 @@ export default function WhatsAppButton() {
       setVisible(alturaVisual / alturaTotal > 0.75);
     };
 
-    window.visualViewport?.addEventListener("resize", handleResize);
-    window.addEventListener("resize", handleResize);
+    window.visualViewport?.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.visualViewport?.removeEventListener("resize", handleResize);
-      window.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -30,18 +30,24 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href={`https://wa.me/${WHATSAPP_NUMBER}`}
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
       className="group fixed bottom-6 right-6 z-50 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)]"
-      style={{ animation: "pulse-glow-green 2.4s ease infinite" }}
+      style={{ animation: 'pulse-glow-green 2.4s ease infinite' }}
     >
       <MessageCircle className="h-7 w-7" aria-hidden="true" />
 
-      <span className="pointer-events-none absolute right-[72px] whitespace-nowrap rounded-lg bg-azul-rey px-3 py-2 text-xs text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100" role="tooltip">
+      <span
+        className="pointer-events-none absolute right-[72px] whitespace-nowrap rounded-lg bg-azul-rey px-3 py-2 text-xs text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
+        role="tooltip"
+      >
         ¡Escríbenos!
-        <span className="absolute right-[-5px] top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 bg-azul-rey" aria-hidden="true" />
+        <span
+          className="absolute right-[-5px] top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 bg-azul-rey"
+          aria-hidden="true"
+        />
       </span>
     </a>
   );

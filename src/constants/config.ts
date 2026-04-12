@@ -13,8 +13,22 @@ export const SAAS_BOOKING_URL =
 export const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '573113634058';
 
-/** URL directa de WhatsApp */
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+/** Texto por defecto para iniciar conversación en WhatsApp */
+export const WHATSAPP_DEFAULT_TEXT =
+  'Hola, quiero información sobre los servicios de Estética Integral.';
+
+/** URL base directa de WhatsApp */
+export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+/** Construye un enlace de WhatsApp con mensaje opcional */
+export function crearWhatsAppUrl(
+  mensaje: string = WHATSAPP_DEFAULT_TEXT,
+): string {
+  return `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(mensaje)}`;
+}
+
+/** URL de WhatsApp con mensaje por defecto */
+export const WHATSAPP_URL = crearWhatsAppUrl();
 
 /** Redes sociales */
 export const INSTAGRAM_URL =

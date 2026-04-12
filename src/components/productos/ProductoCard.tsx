@@ -4,7 +4,7 @@ import liftingImg from '@/assets/images/lifting.jpeg';
 import maquinaImg from '@/assets/images/maquina_cara_cuerpo.jpeg';
 import masajeImg from '@/assets/images/masaje_2.jpeg';
 import pinkGlowImg from '@/assets/images/pinkglow_2.jpeg';
-import { WHATSAPP_URL } from '@/constants/config';
+import { crearWhatsAppUrl } from '@/constants/config';
 import { formatCOP } from '@/lib/utils';
 import type { Producto } from '@/types/producto';
 import Image from 'next/image';
@@ -62,7 +62,9 @@ export default function ProductoCard({ producto }: ProductoCardProps) {
         </p>
 
         <a
-          href={`${WHATSAPP_URL}?text=Hola! Me interesa el producto: ${encodeURIComponent(producto.nombre)}`}
+          href={crearWhatsAppUrl(
+            `Hola, me interesa el producto: ${producto.nombre}`,
+          )}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 inline-flex items-center justify-center rounded-full border border-azul-rey px-4 py-2 text-xs font-semibold uppercase tracking-[0.05em] text-azul-rey transition hover:bg-azul-rey hover:text-white"
